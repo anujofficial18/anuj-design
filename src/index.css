@@ -1,0 +1,378 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=TASA+Orbiter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+  /* HSL Base Tokens for Premium Adaptability */
+  --hue-calm: 215;
+  --hue-joy: 206;
+  --hue-caution: 35;
+  --hue-regret: 360;
+
+  /* Color Palette (Aesthetic Soft Warm Grays & Clean Off-Whites) */
+  --bg-primary: #ffffff;      /* Pure white primary background */
+  --text-primary: #0e0e0f;    /* Sleek charcoal black */
+  --text-secondary: #5a5a5c;  /* Soft cool gray */
+  --text-tertiary: #929296;   /* Muted accent gray */
+  --border-light: #e4e3e0;    /* Soft elegant border */
+  --card-white: #ffffff;      /* Perfect card white */
+  
+  /* RazorSense Emotional States ("every state a feeling") */
+  --state-calm: hsl(var(--hue-calm), 16%, 45%);
+  --state-calm-light: hsl(var(--hue-calm), 24%, 94%);
+  
+  --state-joy: hsl(var(--hue-joy), 88%, 54%);
+  --state-joy-light: hsl(var(--hue-joy), 80%, 95%);
+  --state-joy-rgb: 31, 144, 255;
+  
+  --state-caution: hsl(var(--hue-caution), 92%, 52%);
+  --state-caution-light: hsl(var(--hue-caution), 100%, 95%);
+  
+  --state-regret: hsl(var(--hue-regret), 75%, 55%);
+  --state-regret-light: hsl(var(--hue-regret), 85%, 95%);
+
+  --state-intel: linear-gradient(135deg, hsl(270, 50%, 60%) 0%, var(--state-joy) 100%);
+  
+  /* Legacy Accents Mapping for Compatibility */
+  --accent-purple: var(--state-calm);
+  --accent-purple-light: var(--state-calm-light);
+  --accent-green: var(--state-joy);
+  --accent-green-light: var(--state-joy-light);
+  --accent-orange: var(--state-caution);
+  --accent-orange-light: var(--state-caution-light);
+
+  /* RazorSense Motion Curves ("every interaction a pulse") */
+  --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);     /* Smooth ease out (anticipatory) */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* Alive spring (pulse feedback) */
+  --ease-glide: cubic-bezier(0.22, 1, 0.36, 1);    /* Slow elegant entrance */
+
+  --transition-smooth: all 0.5s var(--ease-fluid);
+  --transition-bounce: all 0.6s var(--ease-spring);
+  --transition-fluid: all 0.4s var(--ease-fluid);
+  
+  /* Fonts */
+  --font-family-sans: 'Geist', 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-heading: 'Inter Tight', 'Outfit', sans-serif;
+  --font-family-serif: 'Instrument Serif', Georgia, serif;
+}
+
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+}
+
+body {
+  font-family: var(--font-family-sans);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+/* Global Button & Input Focus overrides for accessibility & fluid feedback */
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--state-joy);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 10px;
+  transition: var(--transition-smooth);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  width: 100%;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  padding: 16px 0;
+  background: var(--bg-primary);
+  position: relative;
+}
+
+.marquee-content {
+  display: inline-flex;
+  gap: 40px;
+  animation: marquee 30s linear infinite;
+  padding-left: 20px;
+}
+
+.marquee-item {
+  font-family: var(--font-family-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.marquee-star {
+  color: var(--state-joy);
+  font-size: 0.95rem;
+}
+
+/* Grid System */
+.grid-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    padding: 0 20px;
+  }
+}
+
+/* Custom Utility Classes */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--card-white);
+  border: 1px solid var(--border-light);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: var(--transition-bounce);
+}
+
+.badge:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: var(--state-joy);
+  color: var(--text-primary);
+  box-shadow: 0 6px 16px rgba(var(--state-joy-rgb), 0.08);
+}
+
+.title-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 0.8s var(--ease-fluid) forwards;
+}
+
+@keyframes slideUpFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ambient Breathing Hero Background */
+@keyframes ambientBreath {
+  0% {
+    transform: scale(1) translate(0px, 0px) rotate(0deg);
+  }
+  33% {
+    transform: scale(1.06) translate(10px, -8px) rotate(1deg);
+  }
+  66% {
+    transform: scale(1.03) translate(-8px, 10px) rotate(-1deg);
+  }
+  100% {
+    transform: scale(1) translate(0px, 0px) rotate(0deg);
+  }
+}
+
+.hero-breath-bg {
+  animation: ambientBreath 22s var(--ease-fluid) infinite;
+  transform-origin: center center;
+  filter: saturate(1.15) brightness(1.02);
+}
+
+@keyframes lightPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.18);
+  }
+}
+
+.hero-light-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 1;
+  animation: lightPulse 14s var(--ease-fluid) infinite;
+  pointer-events: none;
+}
+
+@keyframes particleDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(40px, -50px) scale(1.3);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate(-20px, 20px) scale(1);
+    opacity: 0.15;
+  }
+}
+
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  animation: particleDrift 20s var(--ease-fluid) infinite alternate;
+}
+
+/* RazorSense Interactive/State Utilities */
+.pulse-hover {
+  transition: var(--transition-bounce);
+}
+.pulse-hover:hover {
+  transform: scale(1.04);
+}
+.pulse-hover:active {
+  transform: scale(0.97);
+}
+
+.pulse-glow-joy {
+  box-shadow: 0 0 0 0px rgba(var(--state-joy-rgb), 0.4);
+  animation: glowJoy 2s infinite var(--ease-fluid);
+}
+@keyframes glowJoy {
+  0% {
+    box-shadow: 0 0 0 0px rgba(var(--state-joy-rgb), 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(var(--state-joy-rgb), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(var(--state-joy-rgb), 0);
+  }
+}
+
+.pulse-glow-calm {
+  box-shadow: 0 0 0 0px rgba(71, 85, 105, 0.3);
+  animation: glowCalm 2.2s infinite var(--ease-fluid);
+}
+@keyframes glowCalm {
+  0% {
+    box-shadow: 0 0 0 0px rgba(71, 85, 105, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(71, 85, 105, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(71, 85, 105, 0);
+  }
+}
+
+.pulse-glow-caution {
+  box-shadow: 0 0 0 0px rgba(245, 158, 11, 0.4);
+  animation: glowCaution 1.8s infinite var(--ease-fluid);
+}
+@keyframes glowCaution {
+  0% {
+    box-shadow: 0 0 0 0px rgba(245, 158, 11, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(245, 158, 11, 0);
+  }
+}
+
+.text-intel-gradient {
+  background: var(--state-intel);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Style specific words in the animated text-reveal headline */
+.hero-headline > span:nth-child(4),  /* "intelligent" */
+.hero-headline > span:nth-child(12), /* "AI" */
+.hero-headline > span:nth-child(16), /* "human-centered" */
+.hero-headline > span:nth-child(18)  /* "UX" */ {
+  font-style: italic;
+  font-family: var(--font-family-serif);
+}
+
+/* Accessibility Visually-Hidden Utility Class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Serif Italic Typography Highlight Helper */
+.serif-italic {
+  font-style: italic;
+  font-family: var(--font-family-serif);
+}
+
+
