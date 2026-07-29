@@ -24,16 +24,15 @@ const GridVariantContext = createContext<variants | undefined>(undefined);
 
 //Motion Variants
 const rowVariants = {
-  initial: { opacity: 0, scale: 0.3 },
-  animate: () => ({
+  initial: { opacity: 1, scale: 1 },
+  animate: {
     opacity: 1,
     scale: 1,
     transition: {
-      delay: Math.random() + 1.5,
-      duration: 1.4,
+      duration: 0.4,
       ease: cubicBezier(0.18, 0.71, 0.11, 1),
     },
-  }),
+  },
 };
 
 export const DraggableContainer = ({
@@ -56,18 +55,22 @@ export const DraggableContainer = ({
 
   useEffect(() => {
     const container = ref.current?.getBoundingClientRect();
-    if (!container) return;
+    if (!container || container.width === 0) return;
 
     const { width, height } = container;
 
     const xDrag = x.on("change", (latest) => {
-      const wrappedX = wrap(-(width / 2), 0, latest);
-      x.set(wrappedX);
+      const wrappedX = wrap(-(width / 2), 0.001, latest);
+      if (Math.abs(wrappedX - latest) > 0.01) {
+        x.set(wrappedX);
+      }
     });
 
     const yDrag = y.on("change", (latest) => {
-      const wrappedY = wrap(-(height / 2), 0, latest);
-      y.set(wrappedY);
+      const wrappedY = wrap(-(height / 2), 0.001, latest);
+      if (Math.abs(wrappedY - latest) > 0.01) {
+        y.set(wrappedY);
+      }
     });
 
     const element = ref.current;

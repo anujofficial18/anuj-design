@@ -70,23 +70,23 @@ export default function ArtGalleryWall() {
         </div>
 
         {/* Infinite Drag Scroll Canvas for Design Feed */}
-        <div style={{ width: '100%', height: '80vh', position: 'relative', overflow: 'hidden', borderTop: '1px solid #EAEAEA', borderBottom: '1px solid #EAEAEA' }}>
-          <DraggableContainer variant="masonry" className="bg-[#0E0E0F]">
+        <div style={{ width: '100%', height: '75vh', minHeight: '550px', position: 'relative', overflow: 'hidden', borderTop: '1px solid #EAEAEA', borderBottom: '1px solid #EAEAEA', background: '#F9F9FB' }}>
+          <DraggableContainer variant="masonry" className="bg-[#F9F9FB]">
             <GridBody>
               {feedItems.map((item) => (
                 <GridItem
                   key={item.id}
-                  className="relative h-64 w-48 md:h-[400px] md:w-[300px] rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300"
+                  className="relative h-64 w-48 md:h-[380px] md:w-[290px] rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300 bg-white border border-[#EAEAEA]"
                 >
                   <div 
-                    className="w-full h-full cursor-pointer"
+                    className="w-full h-full cursor-pointer p-2 flex items-center justify-center bg-white"
                     onPointerDown={handlePointerDown}
                     onClick={(e) => handleCardClick(e, item)}
                   >
                     <img
                       src={item.image}
                       alt={item.title || 'Design Showcase'}
-                      className="pointer-events-none absolute h-full w-full object-cover rounded-2xl"
+                      className="pointer-events-none w-full h-full object-contain rounded-xl"
                     />
                   </div>
                 </GridItem>
