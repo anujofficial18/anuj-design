@@ -90,9 +90,9 @@ export const DraggableContainer = ({
 
   return (
     <GridVariantContext.Provider value={variant}>
-      <div className="h-dvh overflow-hidden">
+      <div className="h-full w-full overflow-hidden">
         <motion.div
-          className="h-dvh overflow-hidden"
+          className="h-full w-full overflow-hidden"
         >
           <motion.div
             className={cn(

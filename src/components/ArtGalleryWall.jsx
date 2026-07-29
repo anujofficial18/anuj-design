@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Info } from 'lucide-react';
 
+import { 
+  DraggableContainer, 
+  GridBody, 
+  GridItem 
+} from '@/components/ui/infinite-drag-scroll';
+
 // Import Real Bisonworkz Studio Portfolio Work Assets
 import bison1 from '../assets/Bison-portfolio-work/Entitlements 363.png';
 import bison2 from '../assets/Bison-portfolio-work/Frame 1321316410.jpg';
@@ -29,7 +35,7 @@ export default function ArtGalleryWall() {
     { id: 'bison-06', colSpan: 2, image: bison3, title: 'Interactive Dashboard Workstation', category: 'Fintech Dashboard', year: '2026', exhibitNo: 'EXHIBIT 06', curatorNote: 'High-density dark mode financial analytics dashboard with multi-widget layouts.', metrics: 'Real-time 60fps Canvas' },
     { id: 'bison-07', colSpan: 1, image: bison11, title: 'ScholarShield Step Flow', category: 'EdTech / Web3 UX', year: '2025', exhibitNo: 'EXHIBIT 07', curatorNote: 'Progressive onboarding stepper for educational verification and digital identity.', metrics: '+32% Onboarding Conversion' },
     { id: 'bison-08', colSpan: 1, image: bison6, title: 'Cinematic Visual Showcase I', category: 'Luxury Brand Identity', year: '2026', exhibitNo: 'EXHIBIT 08', curatorNote: 'Monochrome luxury creative direction for high-end digital brand experience.', metrics: 'Bespoke Art Direction' },
-    { id: 'bison-09', colSpan: 1, image: bison7, title: 'Cinematic Visual Showcase II', category: 'D2C E-Commerce UX', year: '2026', exhibitNo: 'EXHIBIT 09', curatorNote: 'Immersive product narrative flow designed for high-conversion D2C storefront.', metrics: '+40% Session Duration' },
+    { id: 'bison-09', colSpan: 1, image: bison7, title: 'Cinematic Visual Showcase II', category: 'D2C E-Commerce UX', year: '2026', exhibitNo: 'EXHIBIT 10', curatorNote: 'Immersive product narrative flow designed for high-conversion D2C storefront.', metrics: '+40% Session Duration' },
     { id: 'bison-10', colSpan: 2, image: bison5, title: 'Design System & Component Matrix', category: 'System Architecture', year: '2026', exhibitNo: 'EXHIBIT 10', curatorNote: 'Scalable UI component library and design system token architecture.', metrics: 'Used across 14 Production Apps' },
     { id: 'bison-11', colSpan: 1, image: bison4, title: 'Micro-Interactions & Motion Concept', category: 'Interaction Design', year: '2025', exhibitNo: 'EXHIBIT 11', curatorNote: 'Contextual micro-feedback and gesture-driven UI state transitions.', metrics: 'Subtle Motion Psychology' },
     { id: 'bison-12', colSpan: 2, image: bison12, title: 'Multi-Device App Mockup Suite', category: 'Product Showcase', year: '2026', exhibitNo: 'EXHIBIT 12', curatorNote: 'Multi-screen responsive showcase displaying cross-platform layout fidelity.', metrics: 'Universal Responsiveness' },
@@ -37,9 +43,9 @@ export default function ArtGalleryWall() {
 
   return (
     <>
-      {/* Design Feed Section (Bogdan Goncharenko Masonry Style) */}
+      {/* Design Feed Section */}
       <section id="gallery" style={feedStyles.section}>
-        <div className="grid-container">
+        <div className="grid-container" style={{ marginBottom: '32px' }}>
           {/* Header Block */}
           <div style={feedStyles.headerBlock}>
             <h2 style={feedStyles.title}>
@@ -49,32 +55,31 @@ export default function ArtGalleryWall() {
               a curated showcase of interface explorations, brand identities, and mobile systems built with intention.
             </p>
           </div>
+        </div>
 
-          {/* Pure Visual Feed Grid Layout (Bogdan Style — Pure Media, No Text) */}
-          <div style={feedStyles.masonryGrid}>
-            {feedItems.map((item) => (
-              <motion.div
-                key={item.id}
-                style={{
-                  ...feedStyles.feedCard,
-                  gridColumn: item.colSpan ? `span ${item.colSpan}` : 'span 1',
-                }}
-                onClick={() => setSelectedArtwork(item)}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ scale: 1.02 }}
-                className="feed-card-item"
-              >
-                <img
-                  src={item.image}
-                  alt={item.title || 'Design Showcase'}
-                  style={feedStyles.cardMedia}
-                />
-              </motion.div>
-            ))}
-          </div>
+        {/* Infinite Drag Scroll Canvas for Design Feed */}
+        <div style={{ width: '100%', height: '80vh', position: 'relative', overflow: 'hidden', borderTop: '1px solid #EAEAEA', borderBottom: '1px solid #EAEAEA' }}>
+          <DraggableContainer variant="masonry" className="bg-[#0E0E0F]">
+            <GridBody>
+              {feedItems.map((item) => (
+                <GridItem
+                  key={item.id}
+                  className="relative h-64 w-48 md:h-[400px] md:w-[300px] rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300"
+                >
+                  <div 
+                    className="w-full h-full cursor-pointer"
+                    onClick={() => setSelectedArtwork(item)}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title || 'Design Showcase'}
+                      className="pointer-events-none absolute h-full w-full object-cover rounded-2xl"
+                    />
+                  </div>
+                </GridItem>
+              ))}
+            </GridBody>
+          </DraggableContainer>
         </div>
       </section>
 
