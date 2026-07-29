@@ -99,22 +99,28 @@ const images = [
 
 const DemoOne = () => {
   return (
-    <DraggableContainer variant="masonry">
-      <GridBody>
-        {images.map((image) => (
-          <GridItem
-            key={image.id}
-            className="relative h-54 w-36 md:h-96 md:w-64"
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              className="pointer-events-none absolute h-full w-full object-cover"
-            />
-          </GridItem>
-        ))}
-      </GridBody>
-    </DraggableContainer>
+    <div className="w-full h-screen min-h-screen relative pt-20 bg-[#0E0E0F]">
+      <div className="absolute top-6 left-8 z-50 text-white">
+        <h1 className="text-xl font-bold tracking-tight">Infinite Drag Scroll Component Demo</h1>
+        <p className="text-sm text-gray-400">Click and drag in any direction to explore the infinite 2D canvas</p>
+      </div>
+      <DraggableContainer variant="masonry" className="bg-[#0E0E0F]">
+        <GridBody>
+          {images.map((image) => (
+            <GridItem
+              key={image.id}
+              className="relative h-54 w-36 md:h-96 md:w-64 rounded-xl overflow-hidden shadow-2xl"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="pointer-events-none absolute h-full w-full object-cover"
+              />
+            </GridItem>
+          ))}
+        </GridBody>
+      </DraggableContainer>
+    </div>
   );
 };
 

@@ -11,6 +11,8 @@ import Playground from './pages/Playground';
 import Navbar from './components/Navbar';
 import Chatbot from './components/Chatbot';
 
+import { DemoOne } from './components/ui/demo';
+
 function AnimatedRoutes() {
   const location = useLocation();
 
@@ -33,6 +35,7 @@ function AnimatedRoutes() {
         />
         <Route path="/project/:id" element={<ProjectDetail />} />
         <Route path="/playground" element={<Playground />} />
+        <Route path="/demo" element={<DemoOne />} />
       </Routes>
     </AnimatePresence>
   );
