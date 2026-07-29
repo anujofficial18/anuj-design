@@ -94,113 +94,68 @@ export default function Home() {
       {/* Design Feed Section (Bogdan Goncharenko Masonry Feed) */}
       <ArtGalleryWall />
 
-      {/* About Me Section — Editorial Minimalist (Fits in 100vh) */}
-      <section id="about" style={{ padding: '60px 0', minHeight: '100vh', display: 'flex', alignItems: 'center', borderTop: '1px solid #EAEAEA' }}>
-        <div className="grid-container" style={{ width: '100%' }}>
+      {/* About Me & Tools Stack Section — 2 Column Clean Card Grid */}
+      <section id="about" style={{ padding: '100px 0', borderTop: '1px solid #EAEAEA', background: '#F9F9FB' }}>
+        <div className="grid-container">
+          <div style={aboutCardStyles.gridTwoCol}>
 
-          {/* Section Intro */}
-          <motion.div
-            style={aboutStyles.introBlock}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <h2 style={aboutStyles.displayHeading}>
-              Designing with intention, not decoration.
-            </h2>
-          </motion.div>
-
-          {/* 2-Column Bento Grid */}
-          <div style={aboutStyles.bentoGrid}>
-
-            {/* Cell 1: Profile Photo + Meta + Stats (Left Column) */}
+            {/* Left Card: About me */}
             <motion.div
-              style={aboutStyles.profileCell}
-              initial={{ opacity: 0, y: 20 }}
+              style={aboutCardStyles.cardContainer}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div style={aboutStyles.profileImageWrapper}>
-                <img
-                  src={designerProfile}
-                  alt="Anuj Joshi — Head of Design"
-                  style={aboutStyles.profileImage}
-                />
-              </div>
-              <div style={aboutStyles.profileMeta}>
-                <span style={aboutStyles.profileName}>Anuj Joshi</span>
-                <span style={aboutStyles.profileRole}>Partner & Head of Design, Bisonworkz</span>
-              </div>
-
-              <div style={aboutStyles.profileStatsDivider} />
-
-              {/* Stat Numbers below profile image */}
-              <div style={aboutStyles.profileStatsList}>
-                <div style={aboutStyles.statItem}>
-                  <span style={aboutStyles.statDisplay}>4+</span>
-                  <span style={aboutStyles.statCaption}>Years Design Leadership</span>
-                </div>
-                <div style={aboutStyles.statItem}>
-                  <span style={aboutStyles.statDisplay}>91</span>
-                  <span style={aboutStyles.statCaption}>Projects Shipped</span>
-                </div>
-                <div style={aboutStyles.statItem}>
-                  <span style={aboutStyles.statDisplay}>4</span>
-                  <span style={aboutStyles.statCaption}>Core Sectors</span>
-                </div>
-              </div>
+              <h2 style={aboutCardStyles.cardTitle}>About me</h2>
+              <p style={aboutCardStyles.bioText}>
+                Product Designer with deep expertise in crafting intuitive, emotionally resonant digital experiences for fast-paced B2C startups. Strong in interaction design, accessibility, and scalable design systems.
+              </p>
+              <p style={aboutCardStyles.bioText}>
+                Known for bridging user research with practical design execution, delivering elegant, inclusive solutions that thrive under real-world constraints and drive measurable product impact.
+              </p>
             </motion.div>
 
-            {/* Cell 2: Bio Text */}
+            {/* Right Card: Tools stack */}
             <motion.div
-              style={aboutStyles.bioCell}
-              initial={{ opacity: 0, y: 20 }}
+              style={aboutCardStyles.cardContainer}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
-              <p style={aboutStyles.bioLead}>
-                Bisonworkz Studios is a boutique AI-first design studio building websites and brand identities for real estate, luxury, fintech, and D2C brands.
-              </p>
-              <p style={aboutStyles.bioBody}>
-                We combine an AI-first production process with human design psychology. Nothing we ship is decorative — every layout, motion, and typographic choice is conceptualized and justified before it's built.
-              </p>
-
-              {/* Domain Tags */}
-              <div style={aboutStyles.tagRow}>
-                {['AI-First Studio', 'Luxury & Real Estate', 'Fintech', 'D2C Branding', 'Cinematic UX'].map((tag) => (
-                  <span key={tag} style={aboutStyles.domainTag}>{tag}</span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Cell 3: Experience Timeline */}
-            <motion.div
-              style={aboutStyles.timelineCell}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <span style={aboutStyles.cellLabel}>Leadership & Experience</span>
-              <div style={aboutStyles.timelineList}>
+              <h2 style={aboutCardStyles.cardTitle}>Tools stack</h2>
+              
+              <div style={aboutCardStyles.toolsWrap}>
                 {[
-                  { role: 'Partner & Head of Design', company: 'Bisonworkz Studios', period: '2024 — Present', active: true },
-                  { role: 'Product Designer', company: 'ZET (Fintech)', period: '2024 — Present', active: false },
-                  { role: 'UX Design Intern', company: 'Moneyview', period: '2024', active: false },
-                  { role: 'UI/UX Designer', company: 'Codiotic Technologies', period: '2022 — 2024', active: false },
-                ].map((exp, i) => (
-                  <div key={i} style={aboutStyles.timelineRow}>
-                    <div style={aboutStyles.timelineLeft}>
-                      <span style={aboutStyles.timelineRole}>{exp.role}</span>
-                      <span style={aboutStyles.timelineCompany}>{exp.company}</span>
+                  { name: 'Figma', iconBg: '#000000', iconSvg: (
+                    <svg width="18" height="18" viewBox="0 0 38 57" fill="none">
+                      <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z" fill="#0ACF83"/>
+                      <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#1ABCFE"/>
+                      <path d="M0 28.5C0 23.2533 4.25329 19 9.5 19H19V38H9.5C4.25329 38 0 33.7467 0 28.5Z" fill="#A259FF"/>
+                      <path d="M0 9.5C0 4.25329 4.25329 0 9.5 0H19V19H9.5C4.25329 19 0 14.7467 0 9.5Z" fill="#F24E1E"/>
+                      <path d="M19 0H28.5C33.7467 0 38 4.25329 38 9.5C38 14.7467 33.7467 19 28.5 19H19V0Z" fill="#FF7262"/>
+                    </svg>
+                  )},
+                  { name: 'Rive', iconBg: '#111111', iconText: 'R' },
+                  { name: 'Framer', iconBg: '#000000', iconSvg: (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF">
+                      <path d="M12 0H4V8H12V0ZM4 8H12L20 16H4V8ZM12 16V24L4 16H12Z"/>
+                    </svg>
+                  )},
+                  { name: 'Webflow', iconBg: '#146EF5', iconSvg: (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF">
+                      <path d="M17.8 8.8c-.8 0-1.6.4-2.1 1.1l-2.6 3.6-1.5-2.1c-.5-.7-1.3-1.1-2.1-1.1s-1.6.4-2.1 1.1l-3.9 5.5h3.2l2.3-3.2 1.5 2.1c.5.7 1.3 1.1 2.1 1.1s1.6-.4 2.1-1.1l3.9-5.5h-3.2l-2.3 3.2 2.7-3.6z"/>
+                    </svg>
+                  )},
+                  { name: 'Lovable', iconBg: '#FF4757', iconText: '♥' },
+                  { name: 'Adobe XD', iconBg: '#470137', iconText: 'Xd' }
+                ].map((tool) => (
+                  <div key={tool.name} style={aboutCardStyles.toolPill}>
+                    <div style={{ ...aboutCardStyles.toolIconCircle, background: tool.iconBg }}>
+                      {tool.iconSvg ? tool.iconSvg : <span style={aboutCardStyles.toolIconText}>{tool.iconText}</span>}
                     </div>
-                    <div style={aboutStyles.timelineRight}>
-                      <span style={aboutStyles.timelinePeriod}>{exp.period}</span>
-                      {exp.active && <span style={aboutStyles.activeBadge}>Current</span>}
-                    </div>
+                    <span style={aboutCardStyles.toolName}>{tool.name}</span>
                   </div>
                 ))}
               </div>
@@ -626,67 +581,75 @@ const aboutStyles = {
   },
 };
 
-// Work / Projects Section Styles (taste-skill driven)
-const workStyles = {
-  headerWrapper: {
+// Clean 2-Column About & Tools Stack Card Styles
+const aboutCardStyles = {
+  gridTwoCol: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: '32px',
+    width: '100%',
+  },
+  cardContainer: {
+    background: '#FFFFFF',
+    borderRadius: '24px',
+    padding: '48px 44px',
+    border: '1px solid #EAEAEA',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.02)',
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    marginBottom: '48px',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
     gap: '20px',
   },
-  taglineRow: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    marginBottom: '6px',
-  },
-  taglineEmoji: {
-    fontSize: '1.1rem',
-  },
-  taglineText: {
-    fontSize: '0.92rem',
-    color: '#787774',
-    fontStyle: 'italic',
-    letterSpacing: '-0.01em',
-  },
-  displayHeading: {
-    fontSize: 'clamp(2.2rem, 4.5vw, 3.2rem)',
+  cardTitle: {
+    fontSize: 'clamp(2rem, 3vw, 2.5rem)',
     fontWeight: '400',
     fontFamily: "'TASA Orbiter', var(--font-family-heading)",
     color: '#0e0e0f',
-    lineHeight: '1.12',
-    letterSpacing: '-0.02em',
     margin: 0,
-    textTransform: 'lowercase',
+    lineHeight: '1.18',
+    letterSpacing: '-0.02em',
   },
-  filterRow: {
-    display: 'flex',
-    gap: '8px',
-    flexWrap: 'wrap',
-  },
-  filterPill: {
-    fontSize: '0.8rem',
-    fontWeight: '600',
-    padding: '8px 16px',
-    borderRadius: '9999px',
-    border: '1px solid #EAEAEA',
-    background: '#F7F6F3',
+  bioText: {
+    fontSize: '1.02rem',
     color: '#5a5a5c',
-    cursor: 'pointer',
-    transition: 'all 0.2s ease',
+    lineHeight: '1.65',
+    margin: 0,
+    fontWeight: '400',
   },
-  activeFilterPill: {
-    background: '#111111',
-    color: '#FFFFFF',
-    borderColor: '#111111',
-  },
-  projectsContainer: {
+  toolsWrap: {
     display: 'flex',
-    flexDirection: 'column',
-    gap: '72px',
-    width: '100%',
+    flexWrap: 'wrap',
+    gap: '14px',
+    marginTop: '8px',
+  },
+  toolPill: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    padding: '8px 20px 8px 10px',
+    borderRadius: '9999px',
+    background: '#FFFFFF',
+    border: '1px solid #EAEAEA',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+  },
+  toolIconCircle: {
+    width: '38px',
+    height: '38px',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#FFFFFF',
+    flexShrink: 0,
+  },
+  toolIconText: {
+    fontSize: '0.88rem',
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  toolName: {
+    fontSize: '0.92rem',
+    fontWeight: '600',
+    color: '#0e0e0f',
   },
 };
 
