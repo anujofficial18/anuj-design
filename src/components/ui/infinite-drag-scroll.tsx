@@ -70,6 +70,9 @@ export const DraggableContainer = ({
       y.set(wrappedY);
     });
 
+    const element = ref.current;
+    if (!element) return;
+
     const handleWheelScroll = (event: WheelEvent) => {
       if (!isDragging) {
         animate(y, y.get() - event.deltaY * 2.7, {
@@ -80,11 +83,11 @@ export const DraggableContainer = ({
       }
     };
 
-    window.addEventListener("wheel", handleWheelScroll);
+    element.addEventListener("wheel", handleWheelScroll, { passive: true });
     return () => {
       xDrag();
       yDrag();
-      window.removeEventListener("wheel", handleWheelScroll);
+      element.removeEventListener("wheel", handleWheelScroll);
     };
   }, [x, y, isDragging]);
 

@@ -24,6 +24,18 @@ import bison12 from '../assets/Bison-portfolio-work/Untitled-mockup (10) 1.png';
 
 export default function ArtGalleryWall() {
   const [selectedArtwork, setSelectedArtwork] = useState(null);
+  const [pointerStart, setPointerStart] = useState({ x: 0, y: 0 });
+
+  const handlePointerDown = (e) => {
+    setPointerStart({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleCardClick = (e, item) => {
+    const distance = Math.hypot(e.clientX - pointerStart.x, e.clientY - pointerStart.y);
+    if (distance < 10) {
+      setSelectedArtwork(item);
+    }
+  };
 
   // All 12 Real Bisonworkz Studio Portfolio Items in Masonry Feed
   const feedItems = [
@@ -68,7 +80,8 @@ export default function ArtGalleryWall() {
                 >
                   <div 
                     className="w-full h-full cursor-pointer"
-                    onClick={() => setSelectedArtwork(item)}
+                    onPointerDown={handlePointerDown}
+                    onClick={(e) => handleCardClick(e, item)}
                   >
                     <img
                       src={item.image}
