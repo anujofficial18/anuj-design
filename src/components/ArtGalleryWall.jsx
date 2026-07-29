@@ -211,20 +211,22 @@ const feedStyles = {
   feedCard: {
     position: 'relative',
     cursor: 'pointer',
-    borderRadius: '16px',
+    borderRadius: '20px',
     overflow: 'hidden',
-    background: 'transparent',
+    background: '#FFFFFF',
+    border: '1px solid #EAEAEA',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
+    padding: '12px',
     width: '100%',
     marginBottom: '24px',
     breakInside: 'avoid',
-    transition: 'transform 0.4s ease',
+    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   },
   cardMedia: {
     width: '100%',
     height: 'auto',
     display: 'block',
-    borderRadius: '16px',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+    borderRadius: '12px',
   },
 };
 
