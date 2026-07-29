@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Info } from 'lucide-react';
 
 // Import Real Bisonworkz Studio Portfolio Work Assets
-import bison1 from '../assets/Bison-portfolio-work/Entitlements 363.png';
+import bison1 from '../assets/Bison-portfolio-work/Entitlements 363.jpeg';
 import bison2 from '../assets/Bison-portfolio-work/Frame 1321316410.jpg';
 import bison3 from '../assets/Bison-portfolio-work/Frame 1321316411.jpg';
 import bison4 from '../assets/Bison-portfolio-work/Frame 1321316447.png';
