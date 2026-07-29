@@ -3,9 +3,8 @@ import {
   cubicBezier,
   motion,
   useMotionValue,
-  useTransform,
   wrap,
-} from "framer-motion";
+} from "motion/react";
 import {
   memo,
   useContext,
@@ -25,20 +24,16 @@ const GridVariantContext = createContext<variants | undefined>(undefined);
 
 //Motion Variants
 const rowVariants = {
-  initial: { opacity: 1, scale: 1 },
-  animate: {
+  initial: { opacity: 0, scale: 0.3 },
+  animate: () => ({
     opacity: 1,
     scale: 1,
-  },
-};
-
-// Custom safeWrap helper that maps v=0 to 0 (preventing offset to -range on load)
-const safeWrap = (min: number, max: number, v: number) => {
-  const range = Math.abs(max - min);
-  if (!range) return 0;
-  let mod = v % range;
-  if (mod > 0) mod -= range;
-  return mod;
+    transition: {
+      delay: Math.random() + 1.5,
+      duration: 1.4,
+      ease: cubicBezier(0.18, 0.71, 0.11, 1),
+    },
+  }),
 };
 
 export const DraggableContainer = ({
@@ -50,87 +45,76 @@ export const DraggableContainer = ({
   children: React.ReactNode;
   variant?: variants;
 }) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const isDraggingRef = useRef(false);
-  const dragStartRef = useRef({ x: 0, y: 0, initialX: 0, initialY: 0 });
-
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    isDraggingRef.current = true;
-    dragStartRef.current = {
-      x: e.clientX,
-      y: e.clientY,
-      initialX: x.get(),
-      initialY: y.get(),
-    };
-    try {
-      e.currentTarget.setPointerCapture(e.pointerId);
-    } catch (_) {}
-  };
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDraggingRef.current) return;
-    const dx = e.clientX - dragStartRef.current.x;
-    const dy = e.clientY - dragStartRef.current.y;
-    x.set(dragStartRef.current.initialX + dx);
-    y.set(dragStartRef.current.initialY + dy);
-  };
-
-  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-    try {
-      e.currentTarget.releasePointerCapture(e.pointerId);
-    } catch (_) {}
-  };
+  const [isDragging, setIsDragging] = useState(false);
+  const handleIsDragging = () => setIsDragging(true);
+  const handleIsNotDragging = () => setIsDragging(false);
 
   useEffect(() => {
-    const element = containerRef.current;
-    if (!element) return;
+    const container = ref.current?.getBoundingClientRect();
+    if (!container) return;
 
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      animate(y, y.get() - e.deltaY * 2, {
-        type: "tween",
-        duration: 0.5,
-        ease: cubicBezier(0.18, 0.71, 0.11, 1),
-      });
-      if (e.deltaX) {
-        animate(x, x.get() - e.deltaX * 2, {
+    const { width, height } = container;
+
+    const xDrag = x.on("change", (latest) => {
+      const wrappedX = wrap(-(width / 2), 0, latest);
+      x.set(wrappedX);
+    });
+
+    const yDrag = y.on("change", (latest) => {
+      const wrappedY = wrap(-(height / 2), 0, latest);
+      y.set(wrappedY);
+    });
+
+    const handleWheelScroll = (event: WheelEvent) => {
+      if (!isDragging) {
+        animate(y, y.get() - event.deltaY * 2.7, {
           type: "tween",
-          duration: 0.5,
+          duration: 1.2,
           ease: cubicBezier(0.18, 0.71, 0.11, 1),
         });
       }
     };
 
-    element.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("wheel", handleWheelScroll);
     return () => {
-      element.removeEventListener("wheel", handleWheel);
+      xDrag();
+      yDrag();
+      window.removeEventListener("wheel", handleWheelScroll);
     };
-  }, [x, y]);
+  }, [x, y, isDragging]);
 
   return (
     <GridVariantContext.Provider value={variant}>
-      <div
-        ref={containerRef}
-        className="relative h-full w-full overflow-hidden select-none touch-none cursor-grab active:cursor-grabbing"
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
-      >
+      <div className="h-dvh overflow-hidden">
         <motion.div
-          className={cn(
-            "grid h-fit w-fit grid-cols-[repeat(2,1fr)] bg-[#141414] will-change-transform",
-            className
-          )}
-          style={{ x, y }}
+          className="h-dvh overflow-hidden"
         >
-          {children}
+          <motion.div
+            className={cn(
+              "grid h-fit w-fit cursor-grab grid-cols-[repeat(2,1fr)] bg-[#141414] active:cursor-grabbing will-change-transform",
+              className,
+            )}
+            drag
+            dragMomentum={true}
+            dragTransition={{
+              timeConstant: 200,
+              power: 0.28,
+              restDelta: 0,
+              bounceStiffness: 0,
+            }}
+            onMouseDown={handleIsDragging}
+            onMouseUp={handleIsNotDragging}
+            onMouseLeave={handleIsNotDragging}
+            style={{ x, y }}
+            ref={ref}
+          >
+            {children}
+          </motion.div>
         </motion.div>
       </div>
     </GridVariantContext.Provider>
