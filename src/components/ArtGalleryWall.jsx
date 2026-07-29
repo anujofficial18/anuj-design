@@ -55,10 +55,7 @@ export default function ArtGalleryWall() {
             {feedItems.map((item) => (
               <motion.div
                 key={item.id}
-                style={{
-                  ...feedStyles.feedCard,
-                  gridColumn: item.colSpan ? `span ${item.colSpan}` : 'span 1',
-                }}
+                style={feedStyles.feedCard}
                 onClick={() => setSelectedArtwork(item)}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -207,9 +204,8 @@ const feedStyles = {
     maxWidth: '700px',
   },
   masonryGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: '24px',
+    columnCount: 3,
+    columnGap: '24px',
     width: '100%',
   },
   feedCard: {
@@ -218,8 +214,9 @@ const feedStyles = {
     borderRadius: '16px',
     overflow: 'hidden',
     background: 'transparent',
-    alignSelf: 'start',
     width: '100%',
+    marginBottom: '24px',
+    breakInside: 'avoid',
     transition: 'transform 0.4s ease',
   },
   cardMedia: {
