@@ -70,12 +70,12 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.a 
-              href="#work"
+              href="#gallery"
               style={styles.primaryBtn}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
-              Explore Studio Work ↗
+              Explore Design Feed ↗
             </motion.a>
             <motion.a 
               href="#about"

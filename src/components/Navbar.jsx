@@ -11,8 +11,7 @@ export default function Navbar() {
   // Define nav links for Bisonworkz Studios
   const navItems = [
     { name: 'Home', path: '/', isAnchor: true, targetId: 'home' },
-    { name: 'Work', path: '/', isAnchor: true, targetId: 'work' },
-    { name: 'Exhibit', path: '/', isAnchor: true, targetId: 'gallery' },
+    { name: 'Feed', path: '/', isAnchor: true, targetId: 'gallery' },
     { name: 'Philosophy', path: '/', isAnchor: true, targetId: 'about' }
   ];
 

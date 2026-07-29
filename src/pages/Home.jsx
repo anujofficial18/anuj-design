@@ -91,49 +91,7 @@ export default function Home() {
         <Ticker />
       </div>
 
-      {/* Featured Projects Grid (Rayoti Kar Aesthetic) */}
-      <section id="work" style={{ padding: '100px 0', borderTop: '1px solid #EAEAEA' }}>
-        <div className="grid-container">
-
-          {/* Header Block with Rayoti Kar style subtitle & tag */}
-          <div style={workStyles.headerWrapper}>
-            <div>
-              <div style={workStyles.taglineRow}>
-                <span style={workStyles.taglineEmoji}>📈</span>
-                <span style={workStyles.taglineText}>my craft, condensed into the products i am proud of</span>
-              </div>
-              <h2 style={workStyles.displayHeading}>
-                featured projects
-              </h2>
-            </div>
-
-            {/* Category Filter Pills */}
-            <div style={workStyles.filterRow}>
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  style={{
-                    ...workStyles.filterPill,
-                    ...(activeCategory === cat ? workStyles.activeFilterPill : {})
-                  }}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Projects Bento Grid Layout */}
-          <div style={workStyles.projectsContainer}>
-            {filteredProjects.map((proj) => (
-              <ProjectCard key={proj.id} project={proj} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Wall of Design — Art Gallery Section */}
+      {/* Design Feed Section (Bogdan Goncharenko Masonry Feed) */}
       <ArtGalleryWall />
 
       {/* About Me Section — Editorial Minimalist (Fits in 100vh) */}
