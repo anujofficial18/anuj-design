@@ -160,7 +160,7 @@ export default function ArtGalleryWall() {
             </p>
           </div>
 
-          {/* Masonry Feed Grid Layout */}
+          {/* Pure Visual Feed Grid Layout (Bogdan Style — Pure Media, No Text) */}
           <div style={feedStyles.masonryGrid}>
             {feedItems.map((item) => (
               <motion.div
@@ -174,28 +174,14 @@ export default function ArtGalleryWall() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -6 }}
+                whileHover={{ scale: 1.02 }}
                 className="feed-card-item"
               >
-                <div style={feedStyles.cardMediaContainer}>
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    style={feedStyles.cardMedia}
-                  />
-                  <div style={feedStyles.cardBadgeTop}>
-                    <span>{item.category}</span>
-                  </div>
-                </div>
-
-                <div style={feedStyles.cardContentArea}>
-                  <div style={feedStyles.cardMetaRow}>
-                    <span style={feedStyles.exhibitTag}>{item.exhibitNo}</span>
-                    <span style={feedStyles.yearText}>{item.year}</span>
-                  </div>
-                  <h4 style={feedStyles.cardTitle}>{item.title}</h4>
-                  <p style={feedStyles.cardSubtitle}>{item.subtitle}</p>
-                </div>
+                <img
+                  src={item.image}
+                  alt={item.title || 'Design Showcase'}
+                  style={feedStyles.cardMedia}
+                />
               </motion.div>
             ))}
           </div>
@@ -338,75 +324,24 @@ const feedStyles = {
     width: '100%',
   },
   feedCard: {
-    display: 'flex',
-    flexDirection: 'column',
+    position: 'relative',
     cursor: 'pointer',
-    background: '#FFFFFF',
-    border: '1px solid #EAEAEA',
     borderRadius: '20px',
     overflow: 'hidden',
-    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.03)',
-    transition: 'all 0.3s ease',
-  },
-  cardMediaContainer: {
-    position: 'relative',
-    height: '340px',
-    width: '100%',
-    overflow: 'hidden',
-    background: '#F7F6F3',
+    background: '#131416',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+    height: '380px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'all 0.4s ease',
   },
   cardMedia: {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    transition: 'transform 0.5s ease',
-  },
-  cardBadgeTop: {
-    position: 'absolute',
-    top: '16px',
-    left: '16px',
-    background: 'rgba(255, 255, 255, 0.9)',
-    backdropFilter: 'blur(8px)',
-    padding: '4px 12px',
-    borderRadius: '9999px',
-    border: '1px solid rgba(0, 0, 0, 0.08)',
-    fontSize: '0.72rem',
-    fontWeight: '700',
-    color: '#0e0e0f',
-  },
-  cardContentArea: {
-    padding: '24px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px',
-  },
-  cardMetaRow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  exhibitTag: {
-    fontSize: '0.72rem',
-    fontWeight: '700',
-    color: '#111111',
-    letterSpacing: '0.05em',
-  },
-  yearText: {
-    fontSize: '0.78rem',
-    color: '#929296',
-  },
-  cardTitle: {
-    fontSize: '1.2rem',
-    fontWeight: '600',
-    color: '#0e0e0f',
-    margin: 0,
-    lineHeight: '1.3',
-  },
-  cardSubtitle: {
-    fontSize: '0.88rem',
-    color: '#787774',
-    lineHeight: '1.5',
-    margin: 0,
+    display: 'block',
+    borderRadius: '20px',
   },
 };
 
