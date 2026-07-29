@@ -149,11 +149,8 @@ export default function ArtGalleryWall() {
         <div className="grid-container">
           {/* Header Block */}
           <div style={feedStyles.headerBlock}>
-            <div style={feedStyles.eyebrowRow}>
-              <span style={feedStyles.eyebrowTag}>bisonworkz studios ✦ design feed</span>
-            </div>
             <h2 style={feedStyles.title}>
-              design feed
+              Design feed
             </h2>
             <p style={feedStyles.subtitle}>
               a curated showcase of interface explorations, brand identities, and mobile systems built with intention.
