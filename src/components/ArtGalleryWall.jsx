@@ -13,7 +13,7 @@ import bison7 from '../assets/Bison-portfolio-work/Frame 85.jpg';
 import bison8 from '../assets/Bison-portfolio-work/LEAP.png';
 import bison9 from '../assets/Bison-portfolio-work/Login.jpeg';
 import bison10 from '../assets/Bison-portfolio-work/Pricing Editor Entitlement Hierarchy.png';
-import bison11 from '../assets/Bison-portfolio-work/ScholarShield Step.png';
+import bison11 from '../assets/Bison-portfolio-work/Mockuuups Free Macbook Pro Space Gray mockup on the wooden table.jpeg';
 import bison12 from '../assets/Bison-portfolio-work/Untitled-mockup (10) 1.png';
 
 export default function ArtGalleryWall() {
