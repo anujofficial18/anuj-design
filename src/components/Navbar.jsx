@@ -8,12 +8,12 @@ export default function Navbar() {
   const [activeTab, setActiveTab] = useState('Home');
   const [isVisible, setIsVisible] = useState(true);
 
-  // Define nav links
+  // Define nav links for Bisonworkz Studios
   const navItems = [
     { name: 'Home', path: '/', isAnchor: true, targetId: 'home' },
     { name: 'Work', path: '/', isAnchor: true, targetId: 'work' },
-    { name: 'Gallery', path: '/', isAnchor: true, targetId: 'gallery' },
-    { name: 'About', path: '/', isAnchor: true, targetId: 'about' }
+    { name: 'Exhibit', path: '/', isAnchor: true, targetId: 'gallery' },
+    { name: 'Philosophy', path: '/', isAnchor: true, targetId: 'about' }
   ];
 
   // Monitor scroll direction (hide on scroll down, show on scroll up) and active tab

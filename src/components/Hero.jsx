@@ -31,13 +31,19 @@ export default function Hero() {
       {/* Main Grid: Floats Above Background */}
       <div className="grid-container" style={styles.heroGrid}>
         
-        {/* Left Side: Headline (Serif Typography Accent) */}
+        {/* Left Side: Headline (Bisonworkz Studios Brand Positioning) */}
         <motion.div 
           style={styles.heroLeft}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+            <span style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#111111', background: '#F4F4F6', padding: '5px 14px', borderRadius: '9999px', border: '1px solid #EAEAEA' }}>
+              Bisonworkz Studios ✦ AI-First Design Studio
+            </span>
+          </div>
+
           <TextReveal
             as="h1"
             className="hero-headline"
@@ -45,7 +51,7 @@ export default function Hero() {
             preset="fade-in-blur"
             speedReveal={1.2}
           >
-            Designing intelligent fintech products where AI meets human-centered UX
+            Designing digital experiences with intention, not decoration
           </TextReveal>
 
           <motion.p 
@@ -54,7 +60,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span style={styles.highlight}>5+ years</span> designing for fintech & SaaS — from AI-driven stock analysis tools to portfolio dashboards used by <span style={styles.highlight}>50K+ investors</span>. BTech CS background means I design <span style={styles.highlight}>with AI, not just for AI products.</span>
+            Led by <span style={styles.highlight}>Anuj Joshi (Partner & Head of Design)</span>, Bisonworkz combines an <span style={styles.highlight}>AI-first production pipeline</span> with human judgment & design psychology to build cinematic websites and brand identities for <span style={styles.highlight}>real estate, luxury, fintech, and D2C brands.</span>
           </motion.p>
 
           <motion.div 
@@ -64,22 +70,20 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.a 
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#work"
               style={styles.primaryBtn}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
-              Read resume
+              Explore Studio Work ↗
             </motion.a>
             <motion.a 
-              href="#contact"
+              href="#about"
               style={styles.secondaryBtn}
               whileHover={{ scale: 1.03, borderColor: 'var(--text-primary)' }}
               whileTap={{ scale: 0.98 }}
             >
-              Let's build together
+              Our Philosophy
             </motion.a>
           </motion.div>
 
@@ -89,11 +93,11 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.64, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span>5 fintech modules shipped</span>
+            <span>AI-first production speed</span>
             <span style={styles.divider}>·</span>
-            <span>1 AI chatbot in production</span>
+            <span>Cinematic & monochrome luxury</span>
             <span style={styles.divider}>·</span>
-            <span>2 international clients</span>
+            <span>Reasoned design execution</span>
           </motion.div>
         </motion.div>
 

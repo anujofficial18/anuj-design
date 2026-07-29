@@ -149,7 +149,7 @@ export default function Home() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 style={aboutStyles.displayHeading}>
-              Designing financial products for people who aren't designers.
+              Designing with intention, not decoration.
             </h2>
           </motion.div>
 
@@ -167,13 +167,13 @@ export default function Home() {
               <div style={aboutStyles.profileImageWrapper}>
                 <img
                   src={designerProfile}
-                  alt="Anuj Joshi — Product Designer"
+                  alt="Anuj Joshi — Head of Design"
                   style={aboutStyles.profileImage}
                 />
               </div>
               <div style={aboutStyles.profileMeta}>
                 <span style={aboutStyles.profileName}>Anuj Joshi</span>
-                <span style={aboutStyles.profileRole}>Product Designer</span>
+                <span style={aboutStyles.profileRole}>Partner & Head of Design, Bisonworkz</span>
               </div>
 
               <div style={aboutStyles.profileStatsDivider} />
@@ -182,15 +182,15 @@ export default function Home() {
               <div style={aboutStyles.profileStatsList}>
                 <div style={aboutStyles.statItem}>
                   <span style={aboutStyles.statDisplay}>4+</span>
-                  <span style={aboutStyles.statCaption}>Years Experience</span>
+                  <span style={aboutStyles.statCaption}>Years Design Leadership</span>
                 </div>
                 <div style={aboutStyles.statItem}>
                   <span style={aboutStyles.statDisplay}>91</span>
                   <span style={aboutStyles.statCaption}>Projects Shipped</span>
                 </div>
                 <div style={aboutStyles.statItem}>
-                  <span style={aboutStyles.statDisplay}>5</span>
-                  <span style={aboutStyles.statCaption}>Industries</span>
+                  <span style={aboutStyles.statDisplay}>4</span>
+                  <span style={aboutStyles.statCaption}>Core Sectors</span>
                 </div>
               </div>
             </motion.div>
@@ -204,15 +204,15 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
               <p style={aboutStyles.bioLead}>
-                Since 2021, I've designed across fintech, SaaS, and AI — first at Codiotic Technologies, then Moneyview, now at ZET.
+                Bisonworkz Studios is a boutique AI-first design studio building websites and brand identities for real estate, luxury, fintech, and D2C brands.
               </p>
               <p style={aboutStyles.bioBody}>
-                My work lives at the intersection of financial complexity and everyday users: designing stock portfolios for Tier-2 Indian traders and building Voice-to-Visual AI trade recommendation UIs.
+                We combine an AI-first production process with human design psychology. Nothing we ship is decorative — every layout, motion, and typographic choice is conceptualized and justified before it's built.
               </p>
 
               {/* Domain Tags */}
               <div style={aboutStyles.tagRow}>
-                {['Fintech', 'AI Products', 'UX Research', 'Mobile-First', 'Design Systems'].map((tag) => (
+                {['AI-First Studio', 'Luxury & Real Estate', 'Fintech', 'D2C Branding', 'Cinematic UX'].map((tag) => (
                   <span key={tag} style={aboutStyles.domainTag}>{tag}</span>
                 ))}
               </div>
@@ -226,13 +226,13 @@ export default function Home() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span style={aboutStyles.cellLabel}>Experience</span>
+              <span style={aboutStyles.cellLabel}>Leadership & Experience</span>
               <div style={aboutStyles.timelineList}>
                 {[
-                  { role: 'Product Designer', company: 'ZET (Fintech)', period: '2024 — Present', active: true },
+                  { role: 'Partner & Head of Design', company: 'Bisonworkz Studios', period: '2024 — Present', active: true },
+                  { role: 'Product Designer', company: 'ZET (Fintech)', period: '2024 — Present', active: false },
                   { role: 'UX Design Intern', company: 'Moneyview', period: '2024', active: false },
                   { role: 'UI/UX Designer', company: 'Codiotic Technologies', period: '2022 — 2024', active: false },
-                  { role: 'Freelance Designer', company: 'Pixela UX Studio', period: '2021 — Present', active: false },
                 ].map((exp, i) => (
                   <div key={i} style={aboutStyles.timelineRow}>
                     <div style={aboutStyles.timelineLeft}>
