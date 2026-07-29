@@ -131,6 +131,43 @@ button:focus-visible, a:focus-visible {
   }
 }
 
+@keyframes galleryWallScrollLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes galleryWallScrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.gallery-scroll-left {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: galleryWallScrollLeft 35s linear infinite;
+}
+
+.gallery-scroll-right {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: galleryWallScrollRight 35s linear infinite;
+}
+
+.gallery-scroll-left:hover,
+.gallery-scroll-right:hover {
+  animation-play-state: paused;
+}
+
 .marquee-container {
   overflow: hidden;
   white-space: nowrap;

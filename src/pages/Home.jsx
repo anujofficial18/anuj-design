@@ -1,130 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import Ticker from '../components/Ticker';
 import ProjectCard from '../components/ProjectCard';
-import ServiceRow from '../components/ServiceRow';
+import ArtGalleryWall from '../components/ArtGalleryWall';
+import designerProfile from '../assets/Anuj.png';
 
 export default function Home() {
   const navigate = useNavigate();
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  const categories = ['All', 'Fintech', 'UX Research', 'Design Systems'];
 
   const projects = [
     {
       id: 'zet-journey',
-      company: 'ZET',
-      title: 'ZET — Application Journey',
+      company: 'ZET (Fintech)',
+      title: 'how we simplified credit applications for 10M+ users',
       category: 'Fintech product design',
+      categoryTag: 'Fintech',
       type: 'Full time',
       year: '2025',
+      featured: true,
       gradient: 'linear-gradient(135deg, #ffd4a5 0%, #ff680a 100%)',
+      metric: '+42%',
+      metricLabel: 'Conversion Lift',
+      summary: 'Redesigned the core credit application flow for Tier-2 Indian borrowers, cutting drop-off rates through progressive disclosure and instant digital KYC verification.',
+      tags: ['B2C', 'Fintech', 'Mobile Flow', '0→1 Product Design', '10M+ Users'],
+      emoji: '📈'
     },
     {
       id: 'zet-credit',
-      company: 'ZET',
-      title: 'ZET — Credit Score Builder',
+      company: 'ZET (Fintech)',
+      title: 'building a 30-day credit score builder for first-time borrowers',
       category: 'Fintech product design',
+      categoryTag: 'Fintech',
       type: 'Full time',
       year: '2025',
+      featured: false,
       gradient: 'linear-gradient(135deg, #ece7f0 0%, #987da5 100%)',
+      metric: '700+',
+      metricLabel: 'Score Goal',
+      summary: 'Designed gamified financial progress loops enabling users to repair, track, and achieve prime credit status with 100% transparency.',
+      tags: ['B2C', 'Fintech', 'Gamification', 'Design Systems'],
+      emoji: '💳'
     },
     {
       id: 'moneyview-uxr',
       company: 'moneyview',
-      title: 'Moneyview — UX Research Study',
+      title: 'uncovering loan friction points across Tier-2 Indian cities',
       category: 'Financial app design',
+      categoryTag: 'UX Research',
       type: 'Internship',
       year: '2024',
+      featured: false,
       gradient: 'linear-gradient(135deg, #eef5eb 0%, #b2d2a4 100%)',
+      metric: '84%',
+      metricLabel: 'Trust Rating',
+      summary: 'Led 12+ moderated user research sessions across Tier-2 Indian cities to discover friction points and increase user approval confidence.',
+      tags: ['UX Research', 'User Testing', 'Field Studies', 'B2C'],
+      emoji: '🔍'
     },
     {
       id: 'moneyview-data',
       company: 'moneyview',
-      title: 'Moneyview — Personal Data Controls',
+      title: 'designing DPDP privacy controls for transparent data management',
       category: 'Financial app design',
+      categoryTag: 'Design Systems',
       type: 'Internship',
       year: '2024',
+      featured: false,
       gradient: 'linear-gradient(135deg, #e4f3f0 0%, #a2d6cc 100%)',
+      metric: '24h',
+      metricLabel: 'Opt-out SLA',
+      summary: 'Built transparent DPDP-compliant privacy controls allowing users to manage promotional calls, WhatsApp alerts, and third-party data sharing.',
+      tags: ['Privacy UX', 'DPDP Compliance', 'Settings', 'GovTech'],
+      emoji: '🛡️'
     }
   ];
 
-  const services = [
-    {
-      number: '01',
-      title: 'UX / UI Design',
-      description: 'Interfaces that feel right from the very first tap.',
-      details: {
-        deliverables: 'User flows, wireframes, style guides, and pixel-perfect high-fidelity interface layouts.',
-        tools: 'Figma, Figma Variables, components tokens, layout grids, usability principles.'
-      }
-    },
-    {
-      number: '02',
-      title: 'Mobile App Design',
-      description: 'End-to-end app design for iOS and Android, built to perform.',
-      details: {
-        deliverables: 'Native screen architectures, app store assets, and adaptive grid design exports.',
-        tools: 'iOS Human Interface Guidelines, Android Material Design 3, micro-interactions.'
-      }
-    },
-    {
-      number: '03',
-      title: 'Interaction & Prototyping',
-      description: 'Prototypes that bring your product to life instantly.',
-      details: {
-        deliverables: 'Clickable interactive flows, dynamic micro-animations, and developer handoff videos.',
-        tools: 'Principle, Protopie, Framer Motion, transition specs.'
-      }
-    },
-    {
-      number: '04',
-      title: 'Design Systems',
-      description: 'Component libraries that keep your product consistent.',
-      details: {
-        deliverables: 'Reusable button structures, input states, icon grids, and scalable typography scales.',
-        tools: 'Atomic Design methodology, Figma library structures, token-driven designs.'
-      }
-    },
-    {
-      number: '05',
-      title: 'User Research & Testing',
-      description: 'Fast, clean sites built to convert visitors.',
-      details: {
-        deliverables: 'Moderated user tests, heatmaps audits, research insights logs, and feedback loops.',
-        tools: 'Hotjar, Maze testing, user interview schedules, feedback categorization.'
-      }
-    },
-    {
-      number: '06',
-      title: 'Creative Strategy',
-      description: 'Positioning and messaging rooted in research.',
-      details: {
-        deliverables: 'Competitor auditing reports, target audience profiling, and content hierarchy structures.',
-        tools: 'SWOT mapping, brand value props, content design architectures.'
-      }
-    }
-  ];
-
-  const minis = [
-    {
-      id: 'contrast',
-      title: 'Contrast Checker',
-      desc: 'Test color contrast against WCAG standards.',
-      color: '#ece7f0'
-    },
-    {
-      id: 'palette',
-      title: 'HSL Palette Generator',
-      desc: 'Generate gorgeous HSL colors instantly.',
-      color: '#ffd4a5'
-    },
-    {
-      id: 'sketchpad',
-      title: 'Pixel Sketchpad',
-      desc: 'A tiny canvas for drawings and designs.',
-      color: '#eef5eb'
-    }
-  ];
+  const filteredProjects = activeCategory === 'All' 
+    ? projects 
+    : projects.filter(p => p.categoryTag === activeCategory || (p.tags && p.tags.includes(activeCategory)));
 
   return (
     <div style={styles.homeContainer}>
@@ -133,141 +91,185 @@ export default function Home() {
         <Ticker />
       </div>
 
-      {/* Featured Projects Grid */}
-      <section id="work" style={styles.sectionPadding}>
+      {/* Featured Projects Grid (Rayoti Kar Aesthetic) */}
+      <section id="work" style={{ padding: '100px 0', borderTop: '1px solid #EAEAEA' }}>
         <div className="grid-container">
-          <motion.h2
-            style={styles.sectionHeader}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-          >
-            I help teams validate ideas through research & experimentation.
-          </motion.h2>
 
-          <div style={styles.projectsGrid}>
-            {projects.map((proj) => (
+          {/* Header Block with Rayoti Kar style subtitle & tag */}
+          <div style={workStyles.headerWrapper}>
+            <div>
+              <div style={workStyles.taglineRow}>
+                <span style={workStyles.taglineEmoji}>📈</span>
+                <span style={workStyles.taglineText}>my craft, condensed into the products i am proud of</span>
+              </div>
+              <h2 style={workStyles.displayHeading}>
+                featured projects
+              </h2>
+            </div>
+
+            {/* Category Filter Pills */}
+            <div style={workStyles.filterRow}>
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  style={{
+                    ...workStyles.filterPill,
+                    ...(activeCategory === cat ? workStyles.activeFilterPill : {})
+                  }}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Projects Bento Grid Layout */}
+          <div style={workStyles.projectsContainer}>
+            {filteredProjects.map((proj) => (
               <ProjectCard key={proj.id} project={proj} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* About Me Section */}
-      <section id="about" style={{ ...styles.sectionPadding, borderTop: '1px dashed var(--border-light)' }}>
-        <div className="grid-container" style={styles.aboutGrid}>
-          {/* Left Column */}
-          <div style={styles.aboutLeft}>
-            <span style={styles.sectionTag}>✦ About me</span>
-            <a
-              href="mailto:anuj@example.com"
-              style={styles.emailLink}
-              target="_blank"
-              rel="noopener noreferrer"
+      {/* Wall of Design — Art Gallery Section */}
+      <ArtGalleryWall />
+
+      {/* About Me Section — Editorial Minimalist (Fits in 100vh) */}
+      <section id="about" style={{ padding: '60px 0', minHeight: '100vh', display: 'flex', alignItems: 'center', borderTop: '1px solid #EAEAEA' }}>
+        <div className="grid-container" style={{ width: '100%' }}>
+
+          {/* Section Intro */}
+          <motion.div
+            style={aboutStyles.introBlock}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h2 style={aboutStyles.displayHeading}>
+              Designing financial products for people who aren't designers.
+            </h2>
+          </motion.div>
+
+          {/* 2-Column Bento Grid */}
+          <div style={aboutStyles.bentoGrid}>
+
+            {/* Cell 1: Profile Photo + Meta + Stats (Left Column) */}
+            <motion.div
+              style={aboutStyles.profileCell}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
             >
-              More about me ↗
-            </a>
-          </div>
-
-          {/* Right Column */}
-          <div style={styles.aboutRight}>
-            <h3 style={styles.aboutHeading}>
-              4+ years of fintech, AI, and products that actually make sense
-            </h3>
-            <p style={styles.aboutText}>
-              Since 2021, I’ve designed across fintech, SaaS, fashion, and AI — first at Codiotic Technologies, now at Pixela UX Studio.
-            </p>
-            <p style={styles.aboutText}>
-              My sharpest work lives at the intersection of financial complexity and everyday users: designing stock portfolios for Tier 2 Indian traders, building India’s first Voice-to-Visual trade recommendation UI, and creating AI chatbot experiences that actually build trust.
-            </p>
-            <p style={styles.aboutText}>
-              I don’t just use AI to move faster — I design the AI products themselves.
-            </p>
-
-            {/* Stats Block */}
-            <div style={styles.statsRow}>
-              <div style={styles.statBox}>
-                <span style={styles.statNumber}>4</span>
-                <span style={styles.statLabel}>Years experience</span>
-              </div>
-              <div style={styles.statBox}>
-                <span style={styles.statNumber}>91</span>
-                <span style={styles.statLabel}>Projects completed</span>
-              </div>
-              <div style={styles.statBox}>
-                <span style={styles.statNumber}>5+</span>
-                <span style={styles.statLabel}>Industries designed for</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="contact" style={{ ...styles.sectionPadding, borderTop: '1px dashed var(--border-light)' }}>
-        <div className="grid-container" style={styles.aboutGrid}>
-          {/* Left Column */}
-          <div style={styles.aboutLeft}>
-            <span style={styles.sectionTag}>✦ Services</span>
-            <p style={styles.sectionTagSub}>How I can help</p>
-          </div>
-
-          {/* Right Column */}
-          <div style={styles.aboutRight}>
-            <div style={styles.servicesList}>
-              {services.map((service, index) => (
-                <ServiceRow
-                  key={index}
-                  number={service.number}
-                  title={service.title}
-                  description={service.description}
-                  details={service.details}
+              <div style={aboutStyles.profileImageWrapper}>
+                <img
+                  src={designerProfile}
+                  alt="Anuj Joshi — Product Designer"
+                  style={aboutStyles.profileImage}
                 />
-              ))}
-            </div>
-
-            {/* Start project CTA button bar */}
-            <div style={styles.ctaContainer}>
-              <a href="mailto:anuj@example.com" style={styles.ctaLeft}>
-                Start your own project ↗
-              </a>
-              <div style={styles.ctaRight}>
-                ✦ Available for Q3 2026
               </div>
-            </div>
+              <div style={aboutStyles.profileMeta}>
+                <span style={aboutStyles.profileName}>Anuj Joshi</span>
+                <span style={aboutStyles.profileRole}>Product Designer</span>
+              </div>
+
+              <div style={aboutStyles.profileStatsDivider} />
+
+              {/* Stat Numbers below profile image */}
+              <div style={aboutStyles.profileStatsList}>
+                <div style={aboutStyles.statItem}>
+                  <span style={aboutStyles.statDisplay}>4+</span>
+                  <span style={aboutStyles.statCaption}>Years Experience</span>
+                </div>
+                <div style={aboutStyles.statItem}>
+                  <span style={aboutStyles.statDisplay}>91</span>
+                  <span style={aboutStyles.statCaption}>Projects Shipped</span>
+                </div>
+                <div style={aboutStyles.statItem}>
+                  <span style={aboutStyles.statDisplay}>5</span>
+                  <span style={aboutStyles.statCaption}>Industries</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Cell 2: Bio Text */}
+            <motion.div
+              style={aboutStyles.bioCell}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <p style={aboutStyles.bioLead}>
+                Since 2021, I've designed across fintech, SaaS, and AI — first at Codiotic Technologies, then Moneyview, now at ZET.
+              </p>
+              <p style={aboutStyles.bioBody}>
+                My work lives at the intersection of financial complexity and everyday users: designing stock portfolios for Tier-2 Indian traders and building Voice-to-Visual AI trade recommendation UIs.
+              </p>
+
+              {/* Domain Tags */}
+              <div style={aboutStyles.tagRow}>
+                {['Fintech', 'AI Products', 'UX Research', 'Mobile-First', 'Design Systems'].map((tag) => (
+                  <span key={tag} style={aboutStyles.domainTag}>{tag}</span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Cell 3: Experience Timeline */}
+            <motion.div
+              style={aboutStyles.timelineCell}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span style={aboutStyles.cellLabel}>Experience</span>
+              <div style={aboutStyles.timelineList}>
+                {[
+                  { role: 'Product Designer', company: 'ZET (Fintech)', period: '2024 — Present', active: true },
+                  { role: 'UX Design Intern', company: 'Moneyview', period: '2024', active: false },
+                  { role: 'UI/UX Designer', company: 'Codiotic Technologies', period: '2022 — 2024', active: false },
+                  { role: 'Freelance Designer', company: 'Pixela UX Studio', period: '2021 — Present', active: false },
+                ].map((exp, i) => (
+                  <div key={i} style={aboutStyles.timelineRow}>
+                    <div style={aboutStyles.timelineLeft}>
+                      <span style={aboutStyles.timelineRole}>{exp.role}</span>
+                      <span style={aboutStyles.timelineCompany}>{exp.company}</span>
+                    </div>
+                    <div style={aboutStyles.timelineRight}>
+                      <span style={aboutStyles.timelinePeriod}>{exp.period}</span>
+                      {exp.active && <span style={aboutStyles.activeBadge}>Current</span>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* Minis Section */}
-      <section id="playground" style={{ ...styles.sectionPadding, borderTop: '1px dashed var(--border-light)', paddingBottom: '160px' }}>
-        <div className="grid-container">
-          <div style={styles.minisHeaderWrapper}>
-            <span style={styles.sectionTag}>✦ Playground</span>
-            <h3 style={styles.minisTitle}>Minis</h3>
-          </div>
-
-          <div style={styles.minisScrollRow}>
-            {minis.map((mini) => (
-              <motion.div
-                key={mini.id}
-                style={{ ...styles.miniCard, background: mini.color }}
-                whileHover={{ y: -6, scale: 1.01 }}
-                onClick={() => navigate(`/playground#${mini.id}`)}
-              >
-                <div>
-                  <h4 style={styles.miniCardTitle}>{mini.title}</h4>
-                  <p style={styles.miniCardDesc}>{mini.desc}</p>
-                </div>
-                <div style={styles.miniTryBtn}>
-                  Try Widget ↗
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Clean Minimal Footer Bar */}
+      <footer style={{
+        width: '100%',
+        padding: '32px 0',
+        borderTop: '1px solid #EAEAEA',
+        background: '#FFFFFF',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+        <span style={{
+          fontSize: '0.85rem',
+          color: '#787774',
+          fontFamily: 'system-ui, -apple-system, sans-serif'
+        }}>
+          © 2026 all rights reserved by Anuj Joshi.
+        </span>
+      </footer>
     </div>
   );
 }
@@ -392,7 +394,7 @@ const styles = {
     background: 'rgba(0, 0, 0, 0.03)',
     border: '1px solid var(--border-light)',
     padding: '24px 30px',
-    borderRadius: '16px',
+    borderRadius: '0px',
     marginTop: '40px',
     width: '100%',
   },
@@ -429,7 +431,7 @@ const styles = {
     width: '100%',
   },
   miniCard: {
-    borderRadius: '20px',
+    borderRadius: '0px',
     padding: '28px',
     height: '240px',
     display: 'flex',
@@ -458,5 +460,275 @@ const styles = {
     alignSelf: 'flex-start',
   },
   // Media query states handled dynamically
+};
+
+// About Section Styles (Fits 100vh)
+const aboutStyles = {
+  introBlock: {
+    marginBottom: '24px',
+    maxWidth: '850px',
+  },
+  displayHeading: {
+    fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)',
+    fontWeight: '400',
+    fontFamily: "'TASA Orbiter', var(--font-family-heading)",
+    color: '#0e0e0f',
+    lineHeight: '1.18',
+    letterSpacing: '-0.02em',
+    margin: 0,
+  },
+  bentoGrid: {
+    display: 'grid',
+    gridTemplateColumns: '280px 1fr',
+    gridTemplateAreas: `
+      "profile bio"
+      "profile timeline"
+    `,
+    gap: '1px',
+    background: '#EAEAEA',
+    border: '1px solid #EAEAEA',
+    borderRadius: '16px',
+    overflow: 'hidden',
+  },
+  // Cell 1: Profile & Stats
+  profileCell: {
+    background: '#FFFFFF',
+    padding: '28px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+    gridArea: 'profile',
+    justifyContent: 'flex-start',
+  },
+  profileImageWrapper: {
+    width: '100%',
+    aspectRatio: '1 / 1',
+    borderRadius: '12px',
+    overflow: 'hidden',
+    background: '#F7F6F3',
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    objectPosition: 'top center',
+    filter: 'grayscale(15%) contrast(1.02)',
+  },
+  profileMeta: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '2px',
+  },
+  profileName: {
+    fontSize: '1.15rem',
+    fontWeight: '600',
+    color: '#0e0e0f',
+    fontFamily: "'TASA Orbiter', var(--font-family-heading)",
+  },
+  profileRole: {
+    fontSize: '0.85rem',
+    color: '#787774',
+    fontWeight: '400',
+  },
+  profileStatsDivider: {
+    height: '1px',
+    background: '#EAEAEA',
+    width: '100%',
+    margin: '4px 0',
+  },
+  profileStatsList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+  },
+  statItem: {
+    display: 'flex',
+    alignItems: 'baseline',
+    gap: '10px',
+  },
+  statDisplay: {
+    fontSize: '2rem',
+    fontWeight: '400',
+    fontFamily: "'TASA Orbiter', var(--font-family-heading)",
+    color: '#0e0e0f',
+    lineHeight: '1',
+    letterSpacing: '-0.03em',
+    minWidth: '46px',
+  },
+  statCaption: {
+    fontSize: '0.8rem',
+    color: '#787774',
+    fontWeight: '500',
+    letterSpacing: '0.01em',
+  },
+  // Cell 2: Bio
+  bioCell: {
+    background: '#FFFFFF',
+    padding: '32px 36px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+    justifyContent: 'center',
+    gridArea: 'bio',
+  },
+  bioLead: {
+    fontSize: '0.98rem',
+    color: '#2F3437',
+    lineHeight: '1.55',
+    fontWeight: '500',
+    margin: 0,
+  },
+  bioBody: {
+    fontSize: '0.9rem',
+    color: '#5a5a5c',
+    lineHeight: '1.5',
+    fontWeight: '400',
+    margin: 0,
+  },
+  tagRow: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '6px',
+    marginTop: '6px',
+  },
+  domainTag: {
+    fontSize: '0.68rem',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: '0.04em',
+    padding: '4px 10px',
+    borderRadius: '9999px',
+    background: '#E1F3FE',
+    color: '#1F6C9F',
+  },
+  // Cell 3: Experience Timeline
+  timelineCell: {
+    background: '#FFFFFF',
+    padding: '28px 32px',
+    gridArea: 'timeline',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+    justifyContent: 'center',
+  },
+  cellLabel: {
+    fontSize: '0.7rem',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: '0.08em',
+    color: '#787774',
+  },
+  timelineList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0',
+  },
+  timelineRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '8px 0',
+    borderBottom: '1px solid #F0F0F0',
+  },
+  timelineLeft: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1px',
+  },
+  timelineRole: {
+    fontSize: '0.92rem',
+    fontWeight: '600',
+    color: '#0e0e0f',
+  },
+  timelineCompany: {
+    fontSize: '0.82rem',
+    color: '#787774',
+    fontWeight: '400',
+  },
+  timelineRight: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+  },
+  timelinePeriod: {
+    fontSize: '0.8rem',
+    color: '#787774',
+    fontWeight: '400',
+    fontVariantNumeric: 'tabular-nums',
+  },
+  activeBadge: {
+    fontSize: '0.65rem',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    padding: '2px 8px',
+    borderRadius: '9999px',
+    background: '#EDF3EC',
+    color: '#346538',
+  },
+};
+
+// Work / Projects Section Styles (taste-skill driven)
+const workStyles = {
+  headerWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    marginBottom: '48px',
+    flexWrap: 'wrap',
+    gap: '20px',
+  },
+  taglineRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    marginBottom: '6px',
+  },
+  taglineEmoji: {
+    fontSize: '1.1rem',
+  },
+  taglineText: {
+    fontSize: '0.92rem',
+    color: '#787774',
+    fontStyle: 'italic',
+    letterSpacing: '-0.01em',
+  },
+  displayHeading: {
+    fontSize: 'clamp(2.2rem, 4.5vw, 3.2rem)',
+    fontWeight: '400',
+    fontFamily: "'TASA Orbiter', var(--font-family-heading)",
+    color: '#0e0e0f',
+    lineHeight: '1.12',
+    letterSpacing: '-0.02em',
+    margin: 0,
+    textTransform: 'lowercase',
+  },
+  filterRow: {
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+  },
+  filterPill: {
+    fontSize: '0.8rem',
+    fontWeight: '600',
+    padding: '8px 16px',
+    borderRadius: '9999px',
+    border: '1px solid #EAEAEA',
+    background: '#F7F6F3',
+    color: '#5a5a5c',
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+  },
+  activeFilterPill: {
+    background: '#111111',
+    color: '#FFFFFF',
+    borderColor: '#111111',
+  },
+  projectsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '72px',
+    width: '100%',
+  },
 };
 

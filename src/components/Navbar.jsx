@@ -6,36 +6,48 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('Home');
+  const [isVisible, setIsVisible] = useState(true);
 
   // Define nav links
   const navItems = [
     { name: 'Home', path: '/', isAnchor: true, targetId: 'home' },
     { name: 'Work', path: '/', isAnchor: true, targetId: 'work' },
-    { name: 'Playground', path: '/playground', isAnchor: false },
-    { name: 'Contact', path: '/', isAnchor: true, targetId: 'contact' }
+    { name: 'Gallery', path: '/', isAnchor: true, targetId: 'gallery' },
+    { name: 'About', path: '/', isAnchor: true, targetId: 'about' }
   ];
 
-  // Monitor scroll position on home page to highlight correct active anchor
+  // Monitor scroll direction (hide on scroll down, show on scroll up) and active tab
   useEffect(() => {
-    if (location.pathname !== '/') {
-      if (location.pathname.startsWith('/playground')) {
-        setActiveTab('Playground');
-      } else {
-        setActiveTab('');
-      }
-      return;
-    }
+    let lastY = window.scrollY;
 
-    // Set active tab based on scroll position on home page
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 200;
-      
+      const currentY = window.scrollY;
+
+      if (currentY > lastY && currentY > 100) {
+        // Scrolling down -> hide navbar
+        setIsVisible(false);
+      } else {
+        // Scrolling up -> show navbar
+        setIsVisible(true);
+      }
+      lastY = currentY;
+
+      if (location.pathname !== '/') {
+        setActiveTab('');
+        return;
+      }
+
+      // Highlight active tab based on scroll section
+      const scrollPos = currentY + 200;
       const homeSec = document.getElementById('home');
       const workSec = document.getElementById('work');
-      const contactSec = document.getElementById('contact');
+      const gallerySec = document.getElementById('gallery');
+      const aboutSec = document.getElementById('about');
 
-      if (contactSec && scrollPos >= contactSec.offsetTop) {
-        setActiveTab('Contact');
+      if (aboutSec && scrollPos >= aboutSec.offsetTop) {
+        setActiveTab('About');
+      } else if (gallerySec && scrollPos >= gallerySec.offsetTop) {
+        setActiveTab('Gallery');
       } else if (workSec && scrollPos >= workSec.offsetTop) {
         setActiveTab('Work');
       } else if (homeSec) {
@@ -43,15 +55,13 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Run initially
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
   const handleNavClick = (item) => {
     if (item.isAnchor) {
       if (location.pathname !== '/') {
-        // Redirect to home then scroll
         navigate('/');
         setTimeout(() => {
           const el = document.getElementById(item.targetId);
@@ -71,7 +81,12 @@ export default function Navbar() {
   };
 
   return (
-    <div style={styles.navContainer}>
+    <motion.div 
+      style={styles.navContainer}
+      initial={{ x: '-50%', y: 0 }}
+      animate={{ x: '-50%', y: isVisible ? 0 : -120 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    >
       <nav style={styles.navBar}>
         {navItems.map((item) => {
           const isActive = activeTab === item.name;
@@ -96,7 +111,7 @@ export default function Navbar() {
           );
         })}
       </nav>
-    </div>
+    </motion.div>
   );
 }
 

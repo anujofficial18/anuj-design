@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import designerProfile from '../assets/designer_profile.png';
+import designerProfile from '../assets/Anuj.png';
 import { ShaderAnimation } from './ui/shader-animation';
 import { TextReveal } from './ui/text-reveal';
 
