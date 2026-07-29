@@ -216,7 +216,6 @@ const feedStyles = {
     background: '#FFFFFF',
     border: '1px solid #EAEAEA',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
-    padding: '12px',
     width: '100%',
     marginBottom: '24px',
     breakInside: 'avoid',
@@ -226,7 +225,7 @@ const feedStyles = {
     width: '100%',
     height: 'auto',
     display: 'block',
-    borderRadius: '12px',
+    borderRadius: '20px',
   },
 };
 
