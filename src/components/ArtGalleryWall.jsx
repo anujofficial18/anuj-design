@@ -56,7 +56,6 @@ export default function ArtGalleryWall() {
               <motion.div
                 key={item.id}
                 style={feedStyles.feedCard}
-                onClick={() => setSelectedArtwork(item)}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
@@ -210,7 +209,7 @@ const feedStyles = {
   },
   feedCard: {
     position: 'relative',
-    cursor: 'pointer',
+    cursor: 'default',
     borderRadius: '20px',
     overflow: 'hidden',
     background: '#FFFFFF',
