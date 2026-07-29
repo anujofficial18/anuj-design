@@ -50,62 +50,87 @@ export const DraggableContainer = ({
   children: React.ReactNode;
   variant?: variants;
 }) => {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const [isDragging, setIsDragging] = useState(false);
-  const handleIsDragging = () => setIsDragging(true);
-  const handleIsNotDragging = () => setIsDragging(false);
+  const isDraggingRef = useRef(false);
+  const dragStartRef = useRef({ x: 0, y: 0, initialX: 0, initialY: 0 });
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    isDraggingRef.current = true;
+    dragStartRef.current = {
+      x: e.clientX,
+      y: e.clientY,
+      initialX: x.get(),
+      initialY: y.get(),
+    };
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch (_) {}
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current) return;
+    const dx = e.clientX - dragStartRef.current.x;
+    const dy = e.clientY - dragStartRef.current.y;
+    x.set(dragStartRef.current.initialX + dx);
+    y.set(dragStartRef.current.initialY + dy);
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch (_) {}
+  };
 
   useEffect(() => {
-    const element = ref.current;
+    const element = containerRef.current;
     if (!element) return;
 
-    const handleWheelScroll = (event: WheelEvent) => {
-      if (!isDragging) {
-        animate(y, y.get() - event.deltaY * 2.5, {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      animate(y, y.get() - e.deltaY * 2, {
+        type: "tween",
+        duration: 0.5,
+        ease: cubicBezier(0.18, 0.71, 0.11, 1),
+      });
+      if (e.deltaX) {
+        animate(x, x.get() - e.deltaX * 2, {
           type: "tween",
-          duration: 0.8,
+          duration: 0.5,
           ease: cubicBezier(0.18, 0.71, 0.11, 1),
         });
       }
     };
 
-    element.addEventListener("wheel", handleWheelScroll, { passive: true });
+    element.addEventListener("wheel", handleWheel, { passive: false });
     return () => {
-      element.removeEventListener("wheel", handleWheelScroll);
+      element.removeEventListener("wheel", handleWheel);
     };
-  }, [y, isDragging]);
+  }, [x, y]);
 
   return (
     <GridVariantContext.Provider value={variant}>
-      <div className="h-full w-full overflow-hidden select-none">
-        <motion.div className="h-full w-full overflow-hidden">
-          <motion.div
-            className={cn(
-              "grid h-fit w-fit cursor-grab grid-cols-[repeat(2,1fr)] bg-[#141414] active:cursor-grabbing will-change-transform",
-              className,
-            )}
-            drag
-            dragConstraints={{ left: -3000, right: 3000, top: -3000, bottom: 3000 }}
-            dragElastic={0.1}
-            dragMomentum={true}
-            dragTransition={{
-              timeConstant: 200,
-              power: 0.28,
-              restDelta: 0,
-              bounceStiffness: 0,
-            }}
-            onMouseDown={handleIsDragging}
-            onMouseUp={handleIsNotDragging}
-            onMouseLeave={handleIsNotDragging}
-            style={{ x, y }}
-            ref={ref}
-          >
-            {children}
-          </motion.div>
+      <div
+        ref={containerRef}
+        className="relative h-full w-full overflow-hidden select-none touch-none cursor-grab active:cursor-grabbing"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+      >
+        <motion.div
+          className={cn(
+            "grid h-fit w-fit grid-cols-[repeat(2,1fr)] bg-[#141414] will-change-transform",
+            className
+          )}
+          style={{ x, y }}
+        >
+          {children}
         </motion.div>
       </div>
     </GridVariantContext.Provider>
