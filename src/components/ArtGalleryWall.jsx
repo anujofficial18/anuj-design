@@ -150,7 +150,7 @@ export default function ArtGalleryWall() {
           {/* Header Block */}
           <div style={feedStyles.headerBlock}>
             <h2 style={feedStyles.title}>
-              Design feed
+              Design Feed
             </h2>
             <p style={feedStyles.subtitle}>
               a curated showcase of interface explorations, brand identities, and mobile systems built with intention.
@@ -305,7 +305,6 @@ const feedStyles = {
     margin: 0,
     lineHeight: '1.15',
     letterSpacing: '-0.02em',
-    textTransform: 'lowercase',
   },
   subtitle: {
     fontSize: '1rem',
