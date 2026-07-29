@@ -2,144 +2,37 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Info } from 'lucide-react';
 
-// Import Mobile Screen Assets from Wall of design
-import stockDetail1 from '../assets/Wall of design/Stock detail on click of holdings-1.png';
-import stockDetail2 from '../assets/Wall of design/Stock detail on click of holdings-2.png';
-import stockDetail3 from '../assets/Wall of design/Stock detail on click of holdings-3.png';
-import stockDetail4 from '../assets/Wall of design/Stock detail on click of holdings-4.png';
-import stockDetail5 from '../assets/Wall of design/Stock detail on click of holdings-9.png';
-
-// Curated Unsplash UI & Interface Assets
-const unsplashAssets = {
-  dataVis: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-  posTablet: 'https://images.unsplash.com/photo-1556742049-0a670fc80790?auto=format&fit=crop&w=800&q=80',
-  deliveryApp: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
-  reservationUI: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
-  darkTrading: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'
-};
+// Import Real Bisonworkz Studio Portfolio Work Assets
+import bison1 from '../assets/Bison-portfolio-work/Entitlements 363.png';
+import bison2 from '../assets/Bison-portfolio-work/Frame 1321316410.jpg';
+import bison3 from '../assets/Bison-portfolio-work/Frame 1321316411.jpg';
+import bison4 from '../assets/Bison-portfolio-work/Frame 1321316447.png';
+import bison5 from '../assets/Bison-portfolio-work/Frame 1321316449.png';
+import bison6 from '../assets/Bison-portfolio-work/Frame 84.jpg';
+import bison7 from '../assets/Bison-portfolio-work/Frame 85.jpg';
+import bison8 from '../assets/Bison-portfolio-work/LEAP.png';
+import bison9 from '../assets/Bison-portfolio-work/Login.png';
+import bison10 from '../assets/Bison-portfolio-work/Pricing Editor Entitlement Hierarchy.png';
+import bison11 from '../assets/Bison-portfolio-work/ScholarShield Step.png';
+import bison12 from '../assets/Bison-portfolio-work/Untitled-mockup (10) 1.png';
 
 export default function ArtGalleryWall() {
   const [selectedArtwork, setSelectedArtwork] = useState(null);
 
-  // All Exhibit Items formatted into a Bogdan Goncharenko Masonry Feed
+  // All 12 Real Bisonworkz Studio Portfolio Items in Masonry Feed
   const feedItems = [
-    {
-      id: 'ex-01',
-      exhibitNo: 'EXHIBIT 01',
-      title: 'Stock Holdings — Technical Analysis',
-      subtitle: 'Real-time chart indicators & price action flow for retail traders',
-      category: 'Fintech Mobile UI',
-      year: '2025',
-      colSpan: 2,
-      image: stockDetail1,
-      curatorNote: 'Mobile interface layout for stock holdings detail. Clean typography hierarchy and color-coded gain/loss badges designed for active Indian retail investors.',
-      metrics: '2.4M Daily Users | +38% Interaction Rate',
-      tags: ['Fintech', 'Mobile UI', 'Trading']
-    },
-    {
-      id: 'ex-02',
-      exhibitNo: 'EXHIBIT 02',
-      title: 'Analytics Dashboard Matrix',
-      subtitle: 'Multi-device financial reporting dashboard',
-      category: 'Web Interface UI',
-      year: '2024',
-      colSpan: 1,
-      image: unsplashAssets.dataVis,
-      curatorNote: 'Comprehensive web analytics interface with live data streams and interactive performance charts.',
-      metrics: '45% Retention Lift | Tier-1 Enterprise',
-      tags: ['Analytics', 'Web UI', 'Data Vis']
-    },
-    {
-      id: 'ex-03',
-      exhibitNo: 'EXHIBIT 03',
-      title: 'Stock Holdings — Instant Order Execution',
-      subtitle: 'Buy/sell limit order controls under high volatility',
-      category: 'Fintech Micro-Flows',
-      year: '2025',
-      colSpan: 1,
-      image: stockDetail2,
-      curatorNote: 'Instant order execution interface with progressive disclosure modal. Reduces tap distance to complete stock purchases under volatility.',
-      metrics: '<1.2s Order Time | 99.4% Order Accuracy',
-      tags: ['Fintech', 'Micro-flows', 'Order Book']
-    },
-    {
-      id: 'ex-04',
-      exhibitNo: 'EXHIBIT 04',
-      title: 'POS Terminal & Merchant Checkout',
-      subtitle: 'Hardware-integrated point of sale register flow',
-      category: 'POS & Retail UI',
-      year: '2024',
-      colSpan: 2,
-      image: unsplashAssets.posTablet,
-      curatorNote: 'Hardware-integrated point of sale system designed for high-throughput retail checkout environments.',
-      metrics: '3.2s Average Scan | 99.9% Uptime',
-      tags: ['POS', 'Retail', 'Hardware UI']
-    },
-    {
-      id: 'ex-05',
-      exhibitNo: 'EXHIBIT 05',
-      title: 'Stock Holdings — Performance & Candlesticks',
-      subtitle: 'Performance charting & depth view',
-      category: 'Fintech Mobile UI',
-      year: '2025',
-      colSpan: 1,
-      image: stockDetail3,
-      curatorNote: 'Detailed portfolio performance breakdowns with interactive candlestick graphs and historical return toggles.',
-      metrics: '4.8★ User Rating | 2.1M Active Portfolios',
-      tags: ['Fintech', 'Data Vis', 'Mobile']
-    },
-    {
-      id: 'ex-06',
-      exhibitNo: 'EXHIBIT 06',
-      title: 'Delivery & Logistics Dispatch App',
-      subtitle: 'Real-time vehicle tracking & dispatch controls',
-      category: 'Logistics Mobile UX',
-      year: '2025',
-      colSpan: 1,
-      image: unsplashAssets.deliveryApp,
-      curatorNote: 'On-demand delivery dispatch mobile app with live driver GPS tracking and automated route optimization.',
-      metrics: '+28% Delivery Speed | 100K+ Daily Orders',
-      tags: ['Logistics', 'Mobile App', 'GPS']
-    },
-    {
-      id: 'ex-07',
-      exhibitNo: 'EXHIBIT 07',
-      title: 'Stock Holdings — Fundamental Metrics Matrix',
-      subtitle: 'PE ratio, market cap & dividend yield',
-      category: 'Information Architecture',
-      year: '2025',
-      colSpan: 1,
-      image: stockDetail4,
-      curatorNote: 'Financial matrix displaying essential company fundamentals without cluttering the primary chart interface.',
-      metrics: '100% WCAG Compliant | 3 Accent Themes',
-      tags: ['Fintech', 'Information Architecture']
-    },
-    {
-      id: 'ex-08',
-      exhibitNo: 'EXHIBIT 08',
-      title: 'Dark Mode Trading Workstation Engine',
-      subtitle: 'High-contrast candlestick & volume indicators',
-      category: 'Trading Platform UI',
-      year: '2026',
-      colSpan: 2,
-      image: unsplashAssets.darkTrading,
-      curatorNote: 'Pro trader dark-themed interface engineered for low-eyestrain multi-monitor workstation setups.',
-      metrics: '60fps Canvas Render | <15ms Latency',
-      tags: ['Trading Engine', 'Dark Mode', 'Fintech']
-    },
-    {
-      id: 'ex-09',
-      exhibitNo: 'EXHIBIT 09',
-      title: 'Stock Holdings — Full Screen Mobile Experience',
-      subtitle: 'End-to-end mobile trader experience',
-      category: 'Fintech Mobile UI',
-      year: '2025',
-      colSpan: 1,
-      image: stockDetail5,
-      curatorNote: 'Full-bleed mobile screen architectural view combining technical metrics, news feeds, and instant trade execution.',
-      metrics: '10M+ Total Trades | Tier-2 Optimized',
-      tags: ['Fintech', 'Mobile UX', 'App Architecture']
-    }
+    { id: 'bison-01', colSpan: 2, image: bison10, title: 'Pricing Editor & Entitlement Hierarchy', category: 'SaaS Platform UX', year: '2026', exhibitNo: 'EXHIBIT 01', curatorNote: 'Enterprise pricing editor & entitlement management hierarchy interface designed for complex B2B SaaS permissions.', metrics: 'Reduced admin task time by 48%' },
+    { id: 'bison-02', colSpan: 1, image: bison9, title: 'Authentication & Access Flow', category: 'Mobile App UI', year: '2026', exhibitNo: 'EXHIBIT 02', curatorNote: 'Streamlined mobile biometric login & OTP verification journey.', metrics: '99.8% Completion Rate' },
+    { id: 'bison-03', colSpan: 1, image: bison8, title: 'LEAP — AI Financial Workspace', category: 'AI Product Design', year: '2025', exhibitNo: 'EXHIBIT 03', curatorNote: 'Voice-to-Visual AI recommendation engine and financial portfolio workspace.', metrics: '4.9★ User Rating' },
+    { id: 'bison-04', colSpan: 2, image: bison2, title: 'Bisonworkz Brand & Interface Suite', category: 'Brand & Product UX', year: '2026', exhibitNo: 'EXHIBIT 04', curatorNote: 'Cinematic brand identity system and responsive web application canvas.', metrics: 'Boutique Studio Signature' },
+    { id: 'bison-05', colSpan: 1, image: bison1, title: 'Entitlements & Permissions Architecture', category: 'Enterprise Design System', year: '2026', exhibitNo: 'EXHIBIT 05', curatorNote: 'Granular role-based entitlement permission matrix and policy configuration controls.', metrics: 'Tier-1 Security Compliance' },
+    { id: 'bison-06', colSpan: 2, image: bison3, title: 'Interactive Dashboard Workstation', category: 'Fintech Dashboard', year: '2026', exhibitNo: 'EXHIBIT 06', curatorNote: 'High-density dark mode financial analytics dashboard with multi-widget layouts.', metrics: 'Real-time 60fps Canvas' },
+    { id: 'bison-07', colSpan: 1, image: bison11, title: 'ScholarShield Step Flow', category: 'EdTech / Web3 UX', year: '2025', exhibitNo: 'EXHIBIT 07', curatorNote: 'Progressive onboarding stepper for educational verification and digital identity.', metrics: '+32% Onboarding Conversion' },
+    { id: 'bison-08', colSpan: 1, image: bison6, title: 'Cinematic Visual Showcase I', category: 'Luxury Brand Identity', year: '2026', exhibitNo: 'EXHIBIT 08', curatorNote: 'Monochrome luxury creative direction for high-end digital brand experience.', metrics: 'Bespoke Art Direction' },
+    { id: 'bison-09', colSpan: 1, image: bison7, title: 'Cinematic Visual Showcase II', category: 'D2C E-Commerce UX', year: '2026', exhibitNo: 'EXHIBIT 09', curatorNote: 'Immersive product narrative flow designed for high-conversion D2C storefront.', metrics: '+40% Session Duration' },
+    { id: 'bison-10', colSpan: 2, image: bison5, title: 'Design System & Component Matrix', category: 'System Architecture', year: '2026', exhibitNo: 'EXHIBIT 10', curatorNote: 'Scalable UI component library and design system token architecture.', metrics: 'Used across 14 Production Apps' },
+    { id: 'bison-11', colSpan: 1, image: bison4, title: 'Micro-Interactions & Motion Concept', category: 'Interaction Design', year: '2025', exhibitNo: 'EXHIBIT 11', curatorNote: 'Contextual micro-feedback and gesture-driven UI state transitions.', metrics: 'Subtle Motion Psychology' },
+    { id: 'bison-12', colSpan: 2, image: bison12, title: 'Multi-Device App Mockup Suite', category: 'Product Showcase', year: '2026', exhibitNo: 'EXHIBIT 12', curatorNote: 'Multi-screen responsive showcase displaying cross-platform layout fidelity.', metrics: 'Universal Responsiveness' },
   ];
 
   return (
