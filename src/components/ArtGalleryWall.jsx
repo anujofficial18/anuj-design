@@ -215,19 +215,19 @@ const feedStyles = {
   feedCard: {
     position: 'relative',
     cursor: 'pointer',
-    borderRadius: '20px',
+    borderRadius: '16px',
     overflow: 'hidden',
-    background: '#131416',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+    background: 'transparent',
     alignSelf: 'start',
     width: '100%',
-    transition: 'all 0.4s ease',
+    transition: 'transform 0.4s ease',
   },
   cardMedia: {
     width: '100%',
     height: 'auto',
     display: 'block',
-    borderRadius: '20px',
+    borderRadius: '16px',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
   },
 };
 
