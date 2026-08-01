@@ -77,14 +77,6 @@ export default function Hero() {
             >
               Explore Design Feed ↗
             </motion.a>
-            <motion.a 
-              href="#about"
-              style={styles.secondaryBtn}
-              whileHover={{ scale: 1.03, borderColor: 'var(--text-primary)' }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Our Philosophy
-            </motion.a>
           </motion.div>
 
           <motion.div 

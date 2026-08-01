@@ -101,7 +101,7 @@ export default function Home() {
 
             {/* Left Card: About me */}
             <motion.div
-              className="bg-white rounded-3xl p-6 sm:p-10 md:p-11 border border-[#EAEAEA] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-5 w-full"
+              className="bg-white rounded-3xl p-5 sm:p-8 md:p-11 border border-[#EAEAEA] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-5 w-full box-border overflow-hidden"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -118,7 +118,7 @@ export default function Home() {
 
             {/* Right Card: Tools stack */}
             <motion.div
-              className="bg-white rounded-3xl p-6 sm:p-10 md:p-11 border border-[#EAEAEA] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-5 w-full"
+              className="bg-white rounded-3xl p-5 sm:p-8 md:p-11 border border-[#EAEAEA] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-5 w-full box-border overflow-hidden"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -618,22 +618,25 @@ const aboutCardStyles = {
   toolsWrap: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '14px',
-    marginTop: '8px',
+    gap: '10px',
+    marginTop: '4px',
+    width: '100%',
   },
   toolPill: {
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
-    padding: '8px 20px 8px 10px',
+    gap: '10px',
+    padding: '6px 16px 6px 8px',
     borderRadius: '9999px',
     background: '#FFFFFF',
     border: '1px solid #EAEAEA',
     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+    maxWidth: '100%',
+    boxSizing: 'border-box',
   },
   toolIconCircle: {
-    width: '38px',
-    height: '38px',
+    width: '34px',
+    height: '34px',
     borderRadius: '50%',
     display: 'flex',
     alignItems: 'center',
@@ -642,12 +645,12 @@ const aboutCardStyles = {
     flexShrink: 0,
   },
   toolIconText: {
-    fontSize: '0.88rem',
+    fontSize: '0.84rem',
     fontWeight: '700',
     color: '#FFFFFF',
   },
   toolName: {
-    fontSize: '0.92rem',
+    fontSize: '0.88rem',
     fontWeight: '600',
     color: '#0e0e0f',
   },
