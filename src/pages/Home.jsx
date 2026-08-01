@@ -95,13 +95,13 @@ export default function Home() {
       <ArtGalleryWall />
 
       {/* About Me & Tools Stack Section — 2 Column Clean Card Grid */}
-      <section id="about" className="py-16 md:py-24 border-t border-[#EAEAEA] bg-[#F9F9FB]">
+      <section id="about" style={{ padding: '100px 0', background: '#F9F9FB', borderTop: '1px solid #EAEAEA' }}>
         <div className="grid-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))', gap: '32px', width: '100%' }}>
 
             {/* Left Card: About me */}
             <motion.div
-              className="bg-white rounded-3xl p-5 sm:p-8 md:p-11 border border-[#EAEAEA] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-5 w-full box-border overflow-hidden"
+              style={{ background: '#FFFFFF', borderRadius: '28px', padding: '52px 48px 60px 48px', border: '1px solid #EAEAEA', boxShadow: '0 4px 20px rgba(0,0,0,0.02)', display: 'flex', flexDirection: 'column', gap: '24px' }}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -118,7 +118,7 @@ export default function Home() {
 
             {/* Right Card: Tools stack */}
             <motion.div
-              className="bg-white rounded-3xl p-5 sm:p-8 md:p-11 border border-[#EAEAEA] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-5 w-full box-border overflow-hidden"
+              style={{ background: '#FFFFFF', borderRadius: '28px', padding: '52px 48px 60px 48px', border: '1px solid #EAEAEA', boxShadow: '0 4px 20px rgba(0,0,0,0.02)', display: 'flex', flexDirection: 'column', gap: '24px' }}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -618,25 +618,22 @@ const aboutCardStyles = {
   toolsWrap: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '10px',
-    marginTop: '4px',
-    width: '100%',
+    gap: '14px',
+    marginTop: '8px',
   },
   toolPill: {
     display: 'flex',
     alignItems: 'center',
-    gap: '10px',
-    padding: '6px 16px 6px 8px',
+    gap: '12px',
+    padding: '8px 20px 8px 10px',
     borderRadius: '9999px',
     background: '#FFFFFF',
     border: '1px solid #EAEAEA',
     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
-    maxWidth: '100%',
-    boxSizing: 'border-box',
   },
   toolIconCircle: {
-    width: '34px',
-    height: '34px',
+    width: '38px',
+    height: '38px',
     borderRadius: '50%',
     display: 'flex',
     alignItems: 'center',
@@ -645,12 +642,12 @@ const aboutCardStyles = {
     flexShrink: 0,
   },
   toolIconText: {
-    fontSize: '0.84rem',
+    fontSize: '0.88rem',
     fontWeight: '700',
     color: '#FFFFFF',
   },
   toolName: {
-    fontSize: '0.88rem',
+    fontSize: '0.92rem',
     fontWeight: '600',
     color: '#0e0e0f',
   },
