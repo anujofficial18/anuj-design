@@ -95,13 +95,13 @@ export default function Home() {
       <ArtGalleryWall />
 
       {/* About Me & Tools Stack Section — 2 Column Clean Card Grid */}
-      <section id="about" style={{ padding: '100px 0', borderTop: '1px solid #EAEAEA', background: '#F9F9FB' }}>
+      <section id="about" className="py-16 md:py-24 border-t border-[#EAEAEA] bg-[#F9F9FB]">
         <div className="grid-container">
-          <div style={aboutCardStyles.gridTwoCol}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
 
             {/* Left Card: About me */}
             <motion.div
-              style={aboutCardStyles.cardContainer}
+              className="bg-white rounded-3xl p-6 sm:p-10 md:p-11 border border-[#EAEAEA] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-5 w-full"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -118,7 +118,7 @@ export default function Home() {
 
             {/* Right Card: Tools stack */}
             <motion.div
-              style={aboutCardStyles.cardContainer}
+              className="bg-white rounded-3xl p-6 sm:p-10 md:p-11 border border-[#EAEAEA] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-5 w-full"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}

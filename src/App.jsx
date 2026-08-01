@@ -9,7 +9,6 @@ import Playground from './pages/Playground';
 
 // Import Components
 import Navbar from './components/Navbar';
-import Chatbot from './components/Chatbot';
 
 import { DemoOne } from './components/ui/demo';
 
@@ -47,7 +46,6 @@ export default function App() {
       <div style={styles.appWrapper}>
         <Navbar />
         <AnimatedRoutes />
-        <Chatbot />
       </div>
     </Router>
   );

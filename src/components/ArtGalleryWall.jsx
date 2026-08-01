@@ -51,7 +51,7 @@ export default function ArtGalleryWall() {
           </div>
 
           {/* Pure Visual Feed Grid Layout (Bogdan Style — Pure Media, No Text) */}
-          <div style={feedStyles.masonryGrid}>
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 w-full">
             {feedItems.map((item) => (
               <motion.div
                 key={item.id}
