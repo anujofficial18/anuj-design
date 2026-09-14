@@ -119,7 +119,7 @@ export default function AboutEditorial() {
 
           {/* Paragraph 1: Experience & Current Focus */}
           <p style={styles.paragraph}>
-            I'm a product designer with 4+ years of leadership experience across design studios (
+            I'm a product designer with 3+ years of experience across design studios (
             <a 
               href="https://www.linkedin.com/company/pixela-ux-ui-studio/" 
               target="_blank" 

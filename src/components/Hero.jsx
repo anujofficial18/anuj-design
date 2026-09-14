@@ -124,7 +124,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Designing <span style={styles.serifHighlight}>digital experiences</span> with intention, <span style={styles.serifHighlight}>not</span> decoration
+            Designing <span style={styles.serifHighlight}>AI-native</span> fintech experiences with intention, <span style={styles.serifHighlight}>not decoration</span>
           </motion.h1>
 
           <motion.p 

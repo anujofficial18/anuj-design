@@ -8,6 +8,7 @@ export default function Ticker() {
     'UX Designer at Pixela UX/UI Studio',
     'Ex-Codiotic Technologies',
     'Sarthi AI Trade System',
+    'AI Product Design',
     'Scalable Design Systems Architect',
     '10,000+ Active Traders Served',
     'Google UX Certified',
