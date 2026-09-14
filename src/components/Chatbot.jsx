@@ -20,79 +20,79 @@ useEffect(() => {
 messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
 }, [messages, isTyping]);
 
-const dialogTree = {
-welcome: {
-text: "Hey! 👋 I'm Anuj's assistant. What can I help you find today?",
-options: [
-{ label: "💼 Hiring & Experience", next: "hiring" },
-{ label: "🚀 Top Projects", next: "projects" },
-{ label: "📬 Contact Details", next: "contact" }
-]
-},
-hiring: {
-text: "Anuj has 4+ years of experience designing fintech, AI, and SaaS products. He is currently a Product Designer at Pixela UX Studio and is open to full-time roles or contract projects!",
-options: [
-{ label: "What are his key skills?", next: "skills" },
-{ label: "View portfolio projects", next: "projects" },
-{ label: "Get in touch", next: "contact" }
-]
-},
-skills: {
-text: "His core expertise lies in UX/UI Design, Design Systems, Mobile App Design, and Usability Testing. He specialises in translating complex financial/AI workflows into simple, user-friendly layouts.",
-options: [
-{ label: "Show top projects", next: "projects" },
-{ label: "Get in touch", next: "contact" },
-{ label: "Back to main menu", next: "welcome" }
-]
-},
-projects: {
-text: "His featured work includes ZET (Fintech Application Journeys & Credit Builders) and Moneyview (UX Research & Privacy Controls). You can scroll to the 'Work' section or click any project card to see detailed case studies!",
-options: [
-{ label: "How to contact him?", next: "contact" },
-{ label: "Back to main menu", next: "welcome" }
-]
-},
-contact: {
-text: "You can email him directly at anuj@example.com, connect on LinkedIn, or schedule a quick meeting! Let me know if you would like to copy his email or if you're ready to start a project.",
-options: [
-{ label: "Copy Email Address", next: "copy_email" },
-{ label: "Back to main menu", next: "welcome" }
-]
-},
-copy_email: {
-text: "Email copied: anuj@example.com! 📬 Feel free to shoot over a brief description of what you're building, and he will get back to you within 24 hours.",
-options: [
-{ label: "Awesome, thanks!", next: "welcome" },
-{ label: "No further questions", next: "close" }
-]
-},
-close: {
-text: "Glad I could help! Have a wonderful day. Fell free to reopen the chat window if you need anything else.",
-options: [
-{ label: "Restart Conversation", next: "welcome" }
-]
-}
-};
+  const dialogTree = {
+    welcome: {
+      text: "Hey! 👋 I'm Anuj's assistant. What can I help you find today?",
+      options: [
+        { label: "💼 Hiring & Experience", next: "hiring" },
+        { label: "🚀 Top Projects", next: "projects" },
+        { label: "📬 Contact Details", next: "contact" }
+      ]
+    },
+    hiring: {
+      text: "Anuj has 3+ years of experience scaling fintech and SaaS platforms through data-driven UX. He is currently a User Experience Designer at Pixela UX/UI Studio (previously at Codiotic Technologies) and specializes in fintech UX, design systems, and AI-driven interfaces!",
+      options: [
+        { label: "What are his key skills?", next: "skills" },
+        { label: "View portfolio projects", next: "projects" },
+        { label: "Get in touch", next: "contact" }
+      ]
+    },
+    skills: {
+      text: "His core expertise spans Design Systems, Fintech UX, SaaS Platforms, User Research, and AI-Driven Interfaces. Proficient in Figma (Advanced), Framer, Sketch, Adobe XD, and HTML/CSS component architecture.",
+      options: [
+        { label: "Show top projects", next: "projects" },
+        { label: "Get in touch", next: "contact" },
+        { label: "Back to main menu", next: "welcome" }
+      ]
+    },
+    projects: {
+      text: "His featured work includes mutual fund/stock platforms (Tier 2 users), Sarthi AI trade recommendation interfaces, scalable Figma design systems, and SaaS platforms. You can explore the 'Work' section or click any project card to see detailed case studies!",
+      options: [
+        { label: "How to contact him?", next: "contact" },
+        { label: "Back to main menu", next: "welcome" }
+      ]
+    },
+    contact: {
+      text: "You can reach Anuj at anujofficial18@gmail.com, call +91-6268366678, or connect on LinkedIn (linkedin.com/in/ux-anuj). He's based in Indore, India and open to product design opportunities!",
+      options: [
+        { label: "Copy Email Address", next: "copy_email" },
+        { label: "Back to main menu", next: "welcome" }
+      ]
+    },
+    copy_email: {
+      text: "Email copied: anujofficial18@gmail.com! 📬 Feel free to drop a message, and he will get back to you within 24 hours.",
+      options: [
+        { label: "Awesome, thanks!", next: "welcome" },
+        { label: "No further questions", next: "close" }
+      ]
+    },
+    close: {
+      text: "Glad I could help! Have a wonderful day. Feel free to reopen the chat window if you need anything else.",
+      options: [
+        { label: "Restart Conversation", next: "welcome" }
+      ]
+    }
+  };
 
-const triggerBotResponse = (key) => {
-setIsTyping(true);
+  const triggerBotResponse = (key) => {
+    setIsTyping(true);
 
-// Simulate natural typing delay
-setTimeout(() => {
-setIsTyping(false);
-const node = dialogTree[key];
-if (node) {
-setMessages(prev => [
-...prev,
-{ sender: 'bot', text: node.text, options: node.options }
-]);
+    // Simulate natural typing delay
+    setTimeout(() => {
+      setIsTyping(false);
+      const node = dialogTree[key];
+      if (node) {
+        setMessages(prev => [
+          ...prev,
+          { sender: 'bot', text: node.text, options: node.options }
+        ]);
 
-if (key === 'copy_email') {
-navigator.clipboard.writeText('anuj@example.com');
-}
-}
-}, 900);
-};
+        if (key === 'copy_email') {
+          navigator.clipboard.writeText('anujofficial18@gmail.com');
+        }
+      }
+    }, 900);
+  };
 
 const handleOptionClick = (option) => {
 // Add user's selection to chat log

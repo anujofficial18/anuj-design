@@ -20,7 +20,7 @@ import bison12 from '@/assets/Bison-portfolio-work/Untitled-mockup (10) 1.png';
 
 const images = [
   { id: 1, alt: "Entitlements & Permissions Architecture", src: bison1 },
-  { id: 2, alt: "Bisonworkz Brand & Interface Suite", src: bison2 },
+  { id: 2, alt: "Brand & Interface Design System Canvas", src: bison2 },
   { id: 3, alt: "Interactive Dashboard Workstation", src: bison3 },
   { id: 4, alt: "Micro-Interactions & Motion Concept", src: bison4 },
   { id: 5, alt: "Design System & Component Matrix", src: bison5 },
@@ -33,7 +33,7 @@ const images = [
   { id: 12, alt: "Multi-Device App Mockup Suite", src: bison12 },
   // Repeat a few to fill the 6-column grid nicely (18 items total)
   { id: 13, alt: "Entitlements & Permissions Architecture", src: bison1 },
-  { id: 14, alt: "Bisonworkz Brand & Interface Suite", src: bison2 },
+  { id: 14, alt: "Brand & Interface Design System Canvas", src: bison2 },
   { id: 15, alt: "Interactive Dashboard Workstation", src: bison3 },
   { id: 16, alt: "Cinematic Visual Showcase I", src: bison6 },
   { id: 17, alt: "LEAP — AI Financial Workspace", src: bison8 },

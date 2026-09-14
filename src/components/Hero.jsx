@@ -1,24 +1,103 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import designerProfile from '../assets/Anuj.png';
 import { ShaderAnimation } from './ui/shader-animation';
-import { TextReveal } from './ui/text-reveal';
-
-// Static particle config to prevent render mismatches
-const backgroundParticles = [
-  { top: '15%', left: '10%', size: '3px', delay: '0s', bg: 'var(--accent-purple)' },
-  { top: '42%', left: '6%', size: '4px', delay: '-3s', bg: 'var(--accent-green)' },
-  { top: '80%', left: '14%', size: '3px', delay: '-6s', bg: 'var(--accent-orange)' },
-  { top: '22%', left: '88%', size: '4px', delay: '-9s', bg: 'var(--accent-purple)' },
-  { top: '68%', left: '93%', size: '3px', delay: '-12s', bg: 'var(--accent-green)' },
-  { top: '8%', left: '48%', size: '3px', delay: '-15s', bg: 'var(--accent-orange)' },
-  { top: '76%', left: '42%', size: '5px', delay: '-2s', bg: 'var(--border-light)' },
-  { top: '32%', left: '28%', size: '3px', delay: '-5s', bg: 'var(--accent-purple)' },
-  { top: '58%', left: '72%', size: '4px', delay: '-8s', bg: 'var(--accent-orange)' },
-  { top: '92%', left: '82%', size: '3px', delay: '-11s', bg: 'var(--accent-green)' },
-];
 
 export default function Hero() {
+  const avatarTools = [
+    {
+      name: 'Figma',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 38 57" fill="none">
+          <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z" fill="#0ACF83"/>
+          <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#1ABCFE"/>
+          <path d="M0 28.5C0 23.2533 4.25329 19 9.5 19H19V38H9.5C4.25329 38 0 33.7467 0 28.5Z" fill="#A259FF"/>
+          <path d="M0 9.5C0 4.25329 4.25329 0 9.5 0H19V19H9.5C4.25329 19 0 14.7467 0 9.5Z" fill="#F24E1E"/>
+          <path d="M19 0H28.5C33.7467 0 38 4.25329 38 9.5C38 14.7467 33.7467 19 28.5 19H19V0Z" fill="#FF7262"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'Claude',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#D97757">
+          <path d="M12 2a1.2 1.2 0 0 1 1.2 1.2v4.8l3.4-3.4a1.2 1.2 0 0 1 1.7 1.7L14.9 9.7h4.8a1.2 1.2 0 0 1 0 2.4h-4.8l3.4 3.4a1.2 1.2 0 0 1-1.7 1.7l-3.4-3.4v4.8a1.2 1.2 0 0 1-2.4 0v-4.8l-3.4 3.4a1.2 1.2 0 0 1-1.7-1.7l3.4-3.4H4.3a1.2 1.2 0 0 1 0-2.4h4.8L5.7 6.3a1.2 1.2 0 0 1 1.7-1.7l3.4 3.4V3.2A1.2 1.2 0 0 1 12 2z"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'Cursor',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" fill="#4361EE"/>
+          <path d="M7 14.5l2.5-2-2.5-2" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M11.5 15.5h3" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'Linear',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="rainbowArchGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#2563EB" />
+              <stop offset="25%" stopColor="#06B6D4" />
+              <stop offset="50%" stopColor="#10B981" />
+              <stop offset="75%" stopColor="#F59E0B" />
+              <stop offset="100%" stopColor="#EF4444" />
+            </linearGradient>
+          </defs>
+          <path d="M3.5 20c1.5-8.5 5.5-14.5 8.5-14.5s7 6 8.5 14.5" stroke="url(#rainbowArchGrad)" strokeWidth="4.5" strokeLinecap="round"/>
+          <path d="M7 20c1-5.5 3-9.5 5-9.5s4 4 5 9.5" stroke="url(#rainbowArchGrad)" strokeWidth="2.8" strokeLinecap="round" strokeOpacity="0.85"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'Framer',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000">
+          <path d="M12 0H4V8H12V0ZM4 8H12L20 16H4V8ZM12 16V24L4 16H12Z"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'Security',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="silverShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFFFFF"/>
+              <stop offset="45%" stopColor="#E2E8F0"/>
+              <stop offset="80%" stopColor="#94A3B8"/>
+              <stop offset="100%" stopColor="#64748B"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 2.5L4.5 5.8v6c0 5.2 3.2 10.1 7.5 11.7 4.3-1.6 7.5-6.5 7.5-11.7v-6L12 2.5z" fill="url(#silverShieldGrad)" stroke="#64748B" strokeWidth="0.8"/>
+          <path d="M12 3.5L5.5 6.2v5.6c0 4.5 2.8 8.8 6.5 10.1V3.5z" fill="#FFFFFF" fillOpacity="0.5"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'Webflow',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#18181B" strokeWidth="1.9">
+          <circle cx="12" cy="12" r="9.5"/>
+          <ellipse cx="12" cy="12" rx="4.5" ry="9.5"/>
+          <line x1="2.5" y1="12" x2="21.5" y2="12"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'ElevenLabs',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="8" fill="#111113"/>
+          <path d="M7 14v0M10.5 9.5v9M14 6v16M17.5 9.5v9M21 14v0" stroke="#FFFFFF" strokeWidth="2.4" strokeLinecap="round"/>
+        </svg>
+      ),
+    },
+  ];
+
   return (
     <section id="home" style={styles.heroSection}>
       
@@ -31,28 +110,22 @@ export default function Hero() {
       {/* Main Grid: Floats Above Background */}
       <div className="grid-container" style={styles.heroGrid}>
         
-        {/* Left Side: Headline (Bisonworkz Studios Brand Positioning) */}
+        {/* Left Side: Headline (Anuj Joshi Personal Brand Positioning) */}
         <motion.div 
           style={styles.heroLeft}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-            <span style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#111111', background: '#F4F4F6', padding: '5px 14px', borderRadius: '9999px', border: '1px solid #EAEAEA' }}>
-              Bisonworkz Studios ✦ AI-First Design Studio
-            </span>
-          </div>
-
-          <TextReveal
-            as="h1"
+          <motion.h1
             className="hero-headline"
             style={styles.headline}
-            preset="fade-in-blur"
-            speedReveal={1.2}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Designing digital experiences with intention, not decoration
-          </TextReveal>
+            Designing <span style={styles.serifHighlight}>digital experiences</span> with intention, <span style={styles.serifHighlight}>not</span> decoration
+          </motion.h1>
 
           <motion.p 
             style={styles.subtext}
@@ -60,36 +133,23 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            Led by <span style={styles.highlight}>Anuj Joshi (Partner & Head of Design)</span>, Bisonworkz combines an <span style={styles.highlight}>AI-first production pipeline</span> with human judgment & design psychology to build cinematic websites and brand identities for <span style={styles.highlight}>real estate, luxury, fintech, and D2C brands.</span>
+            I am <span style={styles.highlight}>Anuj Joshi</span>, a Product Designer & <span style={styles.highlight}>Fintech & SaaS UX Specialist</span>. With 3+ years of experience, I transform complex financial products and AI-driven platforms into intuitive, high-converting interfaces that drive measurable business outcomes.
           </motion.p>
 
+          {/* Overlapping Circular Avatar Tool Stack */}
           <motion.div 
-            style={styles.ctaGroup}
+            style={styles.avatarStackWrapper}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.a 
-              href="#gallery"
-              style={styles.primaryBtn}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Explore Design Feed ↗
-            </motion.a>
-          </motion.div>
-
-          <motion.div 
-            style={styles.statsRow}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.64, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span>AI-first production speed</span>
-            <span style={styles.divider}>·</span>
-            <span>Cinematic & monochrome luxury</span>
-            <span style={styles.divider}>·</span>
-            <span>Reasoned design execution</span>
+            <div className="hero-tool-stack-container">
+              {avatarTools.map((tool, idx) => (
+                <div key={idx} className="hero-tool-avatar-circle" title={tool.name}>
+                  {tool.icon}
+                </div>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
 
@@ -139,14 +199,17 @@ export default function Hero() {
 
 const styles = {
   heroSection: {
-    paddingTop: '140px',
+    flex: 1,
+    width: '100%',
+    paddingTop: '80px',
     paddingBottom: '20px',
     background: 'var(--bg-primary)',
     display: 'flex',
     alignItems: 'center',
-    flex: 1,
+    justifyContent: 'center',
     position: 'relative',
     overflow: 'hidden',
+    boxSizing: 'border-box',
   },
   backgroundWrapper: {
     position: 'absolute',
@@ -199,52 +262,13 @@ const styles = {
     color: 'var(--text-primary)',
     fontWeight: '600',
   },
-  ctaGroup: {
+  avatarStackWrapper: {
     display: 'flex',
-    gap: '16px',
     alignItems: 'center',
-    marginTop: '12px',
-  },
-  primaryBtn: {
-    padding: '12px 28px',
-    borderRadius: '100px',
-    fontSize: '0.95rem',
-    fontWeight: '600',
-    background: 'var(--text-primary)',
-    color: 'var(--bg-primary)',
-    border: '1px solid var(--text-primary)',
-    cursor: 'pointer',
-    textDecoration: 'none',
-  },
-  secondaryBtn: {
-    padding: '12px 28px',
-    borderRadius: '100px',
-    fontSize: '0.95rem',
-    fontWeight: '600',
-    background: 'transparent',
-    color: 'var(--text-primary)',
-    border: '1px solid var(--border-medium)',
-    cursor: 'pointer',
-    textDecoration: 'none',
-  },
-  statsRow: {
-    display: 'flex',
-    gap: '14px',
     justifyContent: 'center',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    marginTop: '32px',
-    fontSize: '0.92rem',
-    fontWeight: '500',
-    color: 'var(--text-secondary)',
-    fontFamily: 'var(--font-family-sans)',
-    letterSpacing: '0.02em',
-  },
-  divider: {
-    color: 'var(--state-joy)',
-    fontWeight: '700',
-    fontSize: '1.2rem',
-    userSelect: 'none',
+    marginTop: '20px',
+    marginBottom: '8px',
+    width: '100%',
   },
   headline: {
     fontSize: 'clamp(2.5rem, 5.2vw, 4.4rem)',
@@ -255,6 +279,13 @@ const styles = {
     maxWidth: '850px',
     letterSpacing: '-0.01em',
     textAlign: 'center',
+  },
+  serifHighlight: {
+    fontFamily: "'Instrument Serif', Georgia, serif",
+    fontStyle: 'italic',
+    fontWeight: '400',
+    fontSize: '1.08em',
+    letterSpacing: '-0.01em',
   },
   headlineItalic: {
     fontStyle: 'italic',

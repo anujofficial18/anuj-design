@@ -1,26 +1,28 @@
 import React from 'react';
 
 export default function Ticker() {
-  const skills = [
-    'Usability Testing',
-    'Visual Design',
-    'Design Systems',
-    'UX Design',
-    'User Research',
-    'Interaction Design',
-    'Rapid Prototyping',
-    'Product Strategy'
+  const highlights = [
+    '3+ Years of Experience',
+    'Product Designer',
+    'Fintech & SaaS UX Specialist',
+    'UX Designer at Pixela UX/UI Studio',
+    'Ex-Codiotic Technologies',
+    'Sarthi AI Trade System',
+    'Scalable Design Systems Architect',
+    '10,000+ Active Traders Served',
+    'Google UX Certified',
+    'Indore, India',
   ];
 
-  // Duplicate skills list once to ensure a seamless infinite marquee scroll
-  const marqueeItems = [...skills, ...skills];
+  // Quadruple highlights list so -50% translateX loop is 100% seamless on all screen sizes
+  const marqueeItems = [...highlights, ...highlights, ...highlights, ...highlights];
 
   return (
     <div className="marquee-container" style={styles.container}>
       <div className="marquee-content">
-        {marqueeItems.map((skill, index) => (
+        {marqueeItems.map((item, index) => (
           <div key={index} className="marquee-item">
-            <span>{skill}</span>
+            <span>{item}</span>
             <span className="marquee-star">✦</span>
           </div>
         ))}

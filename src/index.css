@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  --font-family-handwriting: 'Patrick Hand', 'Caveat', cursive;
   /* HSL Base Tokens for Premium Adaptability */
   --hue-calm: 215;
   --hue-joy: 206;
@@ -49,14 +50,29 @@
   --transition-fluid: all 0.4s var(--ease-fluid);
   
   /* Fonts */
-  --font-family-sans: 'Geist', 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-family-heading: 'Inter Tight', 'Outfit', sans-serif;
+  --font-family-sans: 'TASA Orbiter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-heading: 'TASA Orbiter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-body: 'TASA Orbiter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-family-serif: 'Instrument Serif', Georgia, serif;
 }
 
 /* Reset & Base */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide native scrollbars utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -69,7 +85,7 @@ html {
 }
 
 body {
-  font-family: var(--font-family-sans);
+  font-family: 'TASA Orbiter', var(--font-family-sans);
   color: var(--text-primary);
   background-color: var(--bg-primary);
   overflow-x: hidden;
@@ -78,8 +94,8 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-heading);
-  font-weight: 600;
+  font-family: 'TASA Orbiter', var(--font-family-heading);
+  font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.02em;
 }
@@ -410,6 +426,295 @@ button:focus-visible, a:focus-visible {
 .serif-italic {
   font-style: italic;
   font-family: var(--font-family-serif);
+}
+
+/* About Section One-Fold Deck Layout */
+.about-deck-grid {
+  display: grid;
+  grid-template-columns: 260px 1.4fr 1.05fr;
+  gap: 20px;
+  align-items: stretch;
+  width: 100%;
+}
+
+@media (max-width: 1120px) {
+  .about-deck-grid {
+    grid-template-columns: 240px 1.3fr 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 960px) {
+  .about-deck-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Project Masonry Grid (Dennis Gecaj style) */
+.project-masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  align-items: start;
+  width: 100%;
+}
+
+.project-masonry-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.project-masonry-col-staggered {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  padding-top: 56px;
+}
+
+@media (max-width: 860px) {
+  .project-masonry-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .project-masonry-col-staggered {
+    padding-top: 0;
+  }
+}
+
+/* Alternating Career Trajectory Timeline */
+.trajectory-timeline-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 52px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 68px;
+}
+
+.trajectory-spine {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 50%;
+  width: 1.5px;
+  background-color: #111113;
+  transform: translateX(-50%);
+}
+
+.trajectory-row {
+  display: grid;
+  grid-template-columns: 1fr 44px 1fr;
+  grid-template-rows: 1fr;
+  align-items: start;
+  position: relative;
+  width: 100%;
+}
+
+.trajectory-card-cell,
+.trajectory-node-cell,
+.trajectory-time-cell {
+  grid-row: 1;
+}
+
+.trajectory-card-cell {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.trajectory-row.left .trajectory-card-cell {
+  grid-column: 1;
+  justify-content: flex-end;
+  padding-right: 24px;
+  padding-left: 0;
+}
+
+.trajectory-row.left .trajectory-node-cell {
+  grid-column: 2;
+}
+
+.trajectory-row.left .trajectory-time-cell {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-left: 24px;
+  padding-right: 0;
+  padding-top: 4px;
+}
+
+.trajectory-row.right .trajectory-time-cell {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  padding-right: 24px;
+  padding-left: 0;
+  padding-top: 4px;
+}
+
+.trajectory-row.right .trajectory-node-cell {
+  grid-column: 2;
+}
+
+.trajectory-row.right .trajectory-card-cell {
+  grid-column: 3;
+  justify-content: flex-start;
+  padding-left: 24px;
+  padding-right: 0;
+}
+
+.trajectory-node-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  padding-top: 10px;
+}
+
+.trajectory-dot {
+  width: 12px;
+  height: 12px;
+  background: #FFFFFF;
+  border: 2px solid #111113;
+  border-radius: 0px;
+  box-shadow: 1px 1px 0px #111113;
+}
+
+@media (max-width: 768px) {
+  .trajectory-spine {
+    left: 20px;
+  }
+  .trajectory-row {
+    display: flex;
+    flex-direction: column;
+    padding-left: 44px;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .trajectory-node-cell {
+    position: absolute;
+    left: 14px;
+    top: 6px;
+    padding-top: 0;
+  }
+  .trajectory-row.left .trajectory-time-cell,
+  .trajectory-row.right .trajectory-time-cell {
+    padding: 0;
+    text-align: left;
+    align-items: flex-start;
+  }
+  .trajectory-row.left .trajectory-card-cell,
+  .trajectory-row.right .trajectory-card-cell {
+    width: 100%;
+    padding: 0;
+    justify-content: flex-start;
+  }
+}
+
+/* Hero Overlapping Circular Tool Stack */
+.hero-tool-stack-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 6px 12px;
+}
+
+.hero-tool-avatar-circle {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2.5px solid #FFFFFF;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -12px;
+  cursor: default;
+}
+
+.hero-tool-avatar-circle:first-child {
+  margin-left: 0;
+}
+
+.hero-tool-avatar-circle:nth-child(1) { z-index: 1; }
+.hero-tool-avatar-circle:nth-child(2) { z-index: 2; }
+.hero-tool-avatar-circle:nth-child(3) { z-index: 3; }
+.hero-tool-avatar-circle:nth-child(4) { z-index: 4; }
+.hero-tool-avatar-circle:nth-child(5) { z-index: 5; }
+.hero-tool-avatar-circle:nth-child(6) { z-index: 6; }
+.hero-tool-avatar-circle:nth-child(7) { z-index: 7; }
+.hero-tool-avatar-circle:nth-child(8) { z-index: 8; }
+
+/* All Designs Horizontal Auto-Scroll Reel */
+.designs-reel-wrapper {
+  user-select: none;
+}
+
+.designs-reel-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: scrollDesigns 60s linear infinite;
+  will-change: transform;
+}
+
+.designs-reel-wrapper:hover .designs-reel-track {
+  animation-play-state: paused;
+}
+
+.design-frame-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12) !important;
+  border-color: rgba(0, 0, 0, 0.18) !important;
+}
+
+.design-frame-card:hover .design-frame-overlay {
+  opacity: 1 !important;
+}
+
+@keyframes scrollDesigns {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Editorial About Me Interactive Styles */
+.editorial-link:hover {
+  text-decoration-color: #0E0E10 !important;
+  color: #000000 !important;
+}
+
+.editorial-social-pill:hover {
+  color: #0E0E10 !important;
+  transform: translateY(-1px);
+}
+
+.editorial-social-pill:hover svg {
+  color: #0E0E10 !important;
+}
+
+/* Hero-Matched Project Cards Micro-Interactions */
+.hero-styled-project-card:hover .card-arrow-badge {
+  transform: translate(2px, -2px);
+}
+
+.hero-styled-project-card:hover .card-mockup-zoom {
+  transform: scale(1.02);
 }
 
 

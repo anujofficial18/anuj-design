@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('Home');
+  const [activeTab, setActiveTab] = useState('Overview');
   const [isVisible, setIsVisible] = useState(true);
 
-  // Define nav links for Bisonworkz Studios
   const navItems = [
-    { name: 'Home', path: '/', isAnchor: true, targetId: 'home' },
-    { name: 'Feed', path: '/', isAnchor: true, targetId: 'gallery' },
-    { name: 'Philosophy', path: '/', isAnchor: true, targetId: 'about' }
+    { name: 'Overview', path: '/', isAnchor: true, targetId: 'home' },
+    { name: 'My Work', path: '/', isAnchor: true, targetId: 'work' },
+    { name: 'About', path: '/', isAnchor: true, targetId: 'about' },
+    { name: 'Experience', path: '/', isAnchor: true, targetId: 'experience' },
+    { name: 'Designs', path: '/', isAnchor: true, targetId: 'designs' },
   ];
 
-  // Monitor scroll direction (hide on scroll down, show on scroll up) and active tab
   useEffect(() => {
     let lastY = window.scrollY;
 
@@ -23,10 +23,8 @@ export default function Navbar() {
       const currentY = window.scrollY;
 
       if (currentY > lastY && currentY > 100) {
-        // Scrolling down -> hide navbar
         setIsVisible(false);
       } else {
-        // Scrolling up -> show navbar
         setIsVisible(true);
       }
       lastY = currentY;
@@ -36,21 +34,23 @@ export default function Navbar() {
         return;
       }
 
-      // Highlight active tab based on scroll section
-      const scrollPos = currentY + 200;
+      const scrollPos = currentY + 240;
       const homeSec = document.getElementById('home');
       const workSec = document.getElementById('work');
-      const gallerySec = document.getElementById('gallery');
       const aboutSec = document.getElementById('about');
+      const expSec = document.getElementById('experience');
+      const designsSec = document.getElementById('designs');
 
-      if (aboutSec && scrollPos >= aboutSec.offsetTop) {
+      if (designsSec && scrollPos >= designsSec.offsetTop) {
+        setActiveTab('Designs');
+      } else if (expSec && scrollPos >= expSec.offsetTop) {
+        setActiveTab('Experience');
+      } else if (aboutSec && scrollPos >= aboutSec.offsetTop) {
         setActiveTab('About');
-      } else if (gallerySec && scrollPos >= gallerySec.offsetTop) {
-        setActiveTab('Gallery');
       } else if (workSec && scrollPos >= workSec.offsetTop) {
-        setActiveTab('Work');
+        setActiveTab('My Work');
       } else if (homeSec) {
-        setActiveTab('Home');
+        setActiveTab('Overview');
       }
     };
 
@@ -68,9 +68,7 @@ export default function Navbar() {
         }, 100);
       } else {
         const el = document.getElementById(item.targetId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
       }
       setActiveTab(item.name);
     } else {
@@ -87,6 +85,11 @@ export default function Navbar() {
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
     >
       <nav style={styles.navBar}>
+        <div style={styles.brandBadge}>
+          <span style={styles.bisonIcon}>✦</span>
+          <span style={styles.brandName}>Anuj Joshi</span>
+        </div>
+        <div style={styles.navDivider} />
         {navItems.map((item) => {
           const isActive = activeTab === item.name;
           return (
@@ -100,7 +103,7 @@ export default function Navbar() {
             >
               {isActive && (
                 <motion.div
-                  layoutId="active-pill"
+                  layoutId="active-pill-studio"
                   style={styles.activePill}
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                 />
@@ -109,6 +112,13 @@ export default function Navbar() {
             </button>
           );
         })}
+        <div style={styles.navDivider} />
+        <a 
+          href="mailto:anujofficial18@gmail.com"
+          style={styles.contactPill}
+        >
+          <span>Connect ↗</span>
+        </a>
       </nav>
     </motion.div>
   );
@@ -124,31 +134,49 @@ const styles = {
     width: 'auto',
     display: 'flex',
     justifyContent: 'center',
-    pointerEvents: 'none'
   },
   navBar: {
-    pointerEvents: 'auto',
     display: 'flex',
     alignItems: 'center',
     gap: '4px',
-    background: 'rgba(255, 255, 255, 0.75)',
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)',
-    border: '1px solid rgba(17, 16, 17, 0.05)',
-    padding: '6px',
+    background: 'rgba(255, 255, 255, 0.85)',
+    backdropFilter: 'blur(16px)',
+    WebkitBackdropFilter: 'blur(16px)',
+    border: '1px solid rgba(17, 16, 17, 0.08)',
+    padding: '6px 10px',
     borderRadius: '100px',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02)'
+  },
+  brandBadge: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    padding: '6px 12px',
+  },
+  bisonIcon: {
+    fontSize: '1rem',
+  },
+  brandName: {
+    fontSize: '0.88rem',
+    fontWeight: '700',
+    color: '#0E0E0F',
+    letterSpacing: '-0.01em',
+  },
+  navDivider: {
+    width: '1px',
+    height: '16px',
+    background: '#EAEAEA',
+    margin: '0 4px',
   },
   navButton: {
     position: 'relative',
     background: 'transparent',
     border: 'none',
     outline: 'none',
-    padding: '10px 22px',
+    padding: '8px 18px',
     cursor: 'pointer',
-    fontSize: '0.9rem',
-    fontWeight: '500',
-    fontFamily: 'var(--font-family-heading)',
+    fontSize: '0.88rem',
+    fontWeight: '600',
     borderRadius: '100px',
     transition: 'color 0.3s ease',
     display: 'flex',
@@ -161,12 +189,25 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'var(--state-joy-light)', // Soft blue-cyan tint matching the streamlined theme
+    backgroundColor: '#F4F4F6',
     borderRadius: '100px',
     zIndex: 0
   },
   navText: {
     position: 'relative',
     zIndex: 1
+  },
+  contactPill: {
+    fontSize: '0.84rem',
+    fontWeight: '600',
+    color: '#0E0E0F',
+    background: '#F4F4F6',
+    border: '1px solid #EAEAEA',
+    padding: '6px 14px',
+    borderRadius: '100px',
+    textDecoration: 'none',
+    display: 'inline-flex',
+    alignItems: 'center',
+    transition: 'all 0.2s ease',
   }
 };

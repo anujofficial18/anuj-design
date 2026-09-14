@@ -24,7 +24,7 @@ export default function ArtGalleryWall() {
     { id: 'bison-01', colSpan: 2, image: bison10, title: 'Pricing Editor & Entitlement Hierarchy', category: 'SaaS Platform UX', year: '2026', exhibitNo: 'EXHIBIT 01', curatorNote: 'Enterprise pricing editor & entitlement management hierarchy interface designed for complex B2B SaaS permissions.', metrics: 'Reduced admin task time by 48%' },
     { id: 'bison-02', colSpan: 1, image: bison9, title: 'Authentication & Access Flow', category: 'Mobile App UI', year: '2026', exhibitNo: 'EXHIBIT 02', curatorNote: 'Streamlined mobile biometric login & OTP verification journey.', metrics: '99.8% Completion Rate' },
     { id: 'bison-03', colSpan: 1, image: bison8, title: 'LEAP — AI Financial Workspace', category: 'AI Product Design', year: '2025', exhibitNo: 'EXHIBIT 03', curatorNote: 'Voice-to-Visual AI recommendation engine and financial portfolio workspace.', metrics: '4.9★ User Rating' },
-    { id: 'bison-04', colSpan: 2, image: bison2, title: 'Bisonworkz Brand & Interface Suite', category: 'Brand & Product UX', year: '2026', exhibitNo: 'EXHIBIT 04', curatorNote: 'Cinematic brand identity system and responsive web application canvas.', metrics: 'Boutique Studio Signature' },
+    { id: 'bison-04', colSpan: 2, image: bison2, title: 'Brand & Product Design System Canvas', category: 'Brand & Product UX', year: '2026', exhibitNo: 'EXHIBIT 04', curatorNote: 'Cinematic brand identity system and responsive web application canvas.', metrics: 'High-Fidelity UI System' },
     { id: 'bison-05', colSpan: 1, image: bison1, title: 'Entitlements & Permissions Architecture', category: 'Enterprise Design System', year: '2026', exhibitNo: 'EXHIBIT 05', curatorNote: 'Granular role-based entitlement permission matrix and policy configuration controls.', metrics: 'Tier-1 Security Compliance' },
     { id: 'bison-06', colSpan: 2, image: bison3, title: 'Interactive Dashboard Workstation', category: 'Fintech Dashboard', year: '2026', exhibitNo: 'EXHIBIT 06', curatorNote: 'High-density dark mode financial analytics dashboard with multi-widget layouts.', metrics: 'Real-time 60fps Canvas' },
     { id: 'bison-07', colSpan: 1, image: bison11, title: 'ScholarShield Step Flow', category: 'EdTech / Web3 UX', year: '2025', exhibitNo: 'EXHIBIT 07', curatorNote: 'Progressive onboarding stepper for educational verification and digital identity.', metrics: '+32% Onboarding Conversion' },
@@ -43,7 +43,7 @@ export default function ArtGalleryWall() {
           {/* Header Block */}
           <div style={feedStyles.headerBlock}>
             <h2 style={feedStyles.title}>
-              Design Feed
+              art <span style={feedStyles.serifHighlight}>gallery</span>
             </h2>
             <p style={feedStyles.subtitle}>
               a curated showcase of interface explorations, brand identities, and mobile systems built with intention.
@@ -187,20 +187,28 @@ const feedStyles = {
     border: '1px solid #EAEAEA',
   },
   title: {
-    fontSize: 'clamp(2.2rem, 4.5vw, 3.2rem)',
-    fontWeight: '400',
-    fontFamily: "'TASA Orbiter', var(--font-family-heading)",
-    color: '#0e0e0f',
+    fontSize: 'clamp(2.4rem, 4vw, 3.4rem)',
+    fontWeight: '700',
+    fontFamily: "'TASA Orbiter', -apple-system, BlinkMacSystemFont, sans-serif",
+    color: '#0E0E0F',
     margin: 0,
-    lineHeight: '1.15',
-    letterSpacing: '-0.02em',
+    lineHeight: '1.12',
+    letterSpacing: '-0.03em',
+  },
+  serifHighlight: {
+    fontFamily: "'Instrument Serif', Georgia, serif",
+    fontStyle: 'italic',
+    fontWeight: '400',
+    fontSize: '1.08em',
+    color: '#3F3F46',
+    letterSpacing: '-0.01em',
   },
   subtitle: {
     fontSize: '1rem',
-    color: '#787774',
-    lineHeight: '1.6',
-    marginTop: '6px',
-    maxWidth: '700px',
+    color: '#5A5A62',
+    lineHeight: '1.5',
+    marginTop: '8px',
+    maxWidth: '650px',
   },
   masonryGrid: {
     columnCount: 3,
